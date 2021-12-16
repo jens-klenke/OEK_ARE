@@ -35,8 +35,8 @@ class: class: title-slide title-rintro center middle
 .left-column[Contact Information:  ]
 
 .right-column[
-Alexander Gerber  
-Alexander.Gerber@vwl.uni-due.de
+Jens Klenke  
+Jens.Klenke@vwl.uni-due.de
     
 Martin Arnold  
 Martin Arnold@vwl.uni-due.de]
