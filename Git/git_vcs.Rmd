@@ -1,7 +1,9 @@
 ---
 title: "Advanced R for Econometricians"
 subtitle: "Version Control with Git"
-author: "Alexander Gerber"
+author: 
+  - "Martin Arnold"
+  - "Jens Klenke"
 date: "5 November 2018"
 output:
   xaringan::moon_reader:
