@@ -36,7 +36,7 @@ class: left, top
 
 <blockquote style ="margin-top:0%;">
 R is a programming language and free software environment for statistical computing and  <b>graphics</b> ... .
-.right[&mdash; <cite>Wikipedia</cite>]
+.right[&mdash; <cite>Wikipedia </cite>]
 </blockquote>
 
 There are three major graphical systems: 

@@ -11,19 +11,23 @@
 To specify the margin of the first title h1
 */
 .remark-slide-content > h1:first-of-type {
+  color: #004c93; /* #e64626; */
   margin-top: 5px;
   margin-bottom: 10px;
 }
 .remark-slide-content > h2:first-of-type {
-  color: #e64626;
+  color: #004c93; /* #e64626; */
+/*  font-weight: bold; */
   margin-top: 5px;
   margin-bottom: 10px;
 }
 .remark-slide-content > h3:first-of-type {
+  color: #004c93; /* #e64626; */
   margin-top: 5px;
   margin-bottom: 10px;
 }
 .remark-slide-content > h4:first-of-type {
+  color: #004c93; /* #e64626; */
   margin-top: 5px;
   margin-bottom: 10px;
 }
@@ -355,7 +359,7 @@ slides > slide {
 } */
 
 .title-slide {
-    background-color: #e64626;
+    background-color:  #004c93;  /*#e64626; */
     background-image: url(../assets/ude_logo.png);
     background-position: 7% 10%;
     background-size: 220px;
@@ -367,7 +371,7 @@ slides > slide {
 
 /* H1 fonts  */
 .title-slide h1 {
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: normal;
   font-size: 45px;
   padding: 20px;
@@ -411,13 +415,13 @@ blockquote, .blockquote {
   margin-bottom: 0.2em;
   margin-left: 5px;
   margin-right: 5px;
-  border-left: solid 10px #e64626;
-  border-top: solid 2px #e64626;
-  border-bottom: solid 2px #e64626;
-  border-right: solid 2px #e64626;
+  border-left: solid 10px #004c93; /* #e64626; */
+  border-top: solid 2px #004c93; /* #e64626; */
+  border-bottom: solid 2px #004c93; /* #e64626; */
+  border-right: solid 2px #004c93; /* #e64626; */
   box-shadow: 0 0 6px rgba(0,0,0,0.5);
   /* background-color: #e64626; */
-  color: #e64626;
+  color: #004c93; /* #e64626; */
   padding: 0.5em;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
