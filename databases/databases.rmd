@@ -89,6 +89,7 @@ store <- tibble(store_id =  1:2,
                 store_location = c("Baker St.", "Abbey Road"),
                 store_mngr   = c("John", "George")
                 )
+
 customer <- tibble(cust_id = names(cust_names),
                    cust_names = cust_names,
                    cust_address = cust_address)
@@ -140,7 +141,7 @@ install.packages("dbplyr")
 - You also need to specify a driver that makes communication with the database possible.
 - There is a remote MySQL database hosted on the web which we have access to:
     ```{r, eval = FALSE}
-library(dplyr)
+library(dbplyr)
 library(dplyr)
 con <- DBI::dbConnect(
           drv = RMariaDB::MariaDB(), # MariaDB driver works for MySQL as well
@@ -157,15 +158,15 @@ con <- DBI::dbConnect(
 library(dplyr)
 con <- DBI::dbConnect(
                drv = RMariaDB::MariaDB(), # MariaDB driver works for MySQL as well
-               username = "sql7312029",
-               dbname   = "sql7312029", 
-               host     = "sql7.freesqldatabase.com",
-               password = "hl9DXe4aZJ",
-               port     = "3306"
+               username = 'sql11460561',
+               dbname   = 'sql11460561', 
+               host     = 'sql11.freesqldatabase.com',
+               password = 'D2pkl1XBCf',
+               port     = '3306'
                )
 ```
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 DBI::dbWriteTable(con, "gapminder", gapminder::gapminder)
 DBI::dbWriteTable(con, "country_codes", gapminder::country_codes)
 ```

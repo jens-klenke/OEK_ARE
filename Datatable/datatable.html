@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Advanced R for Econometricians</title>
     <meta charset="utf-8" />
+    <script src="datatable_files/header-attrs/header-attrs.js"></script>
     <link href="datatable_files/remark-css/default.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
@@ -16,14 +17,14 @@
       cursor: default;
     }
     </style>
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="..\assets\sydney-fonts.css" type="text/css" />
-    <link rel="stylesheet" href="..\assets\sydney.css" type="text/css" />
-    <link rel="stylesheet" href="..\assets\custom.css" type="text/css" />
-    <link rel="stylesheet" href="..\assets\title_slides.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/assets/sydney-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/assets/sydney.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/assets/title_slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -104,7 +105,7 @@ obj_addr(X$a)
 ```
 
 ```
-## [1] "0x120cff10"
+## [1] "0x1daf9a30"
 ```
 
 ```r
@@ -113,7 +114,7 @@ obj_addr(X$a)
 ```
 
 ```
-## [1] "0x120d1300"
+## [1] "0x1daf87a0"
 ```
 
 
@@ -124,7 +125,7 @@ obj_addr(X$a)
 ```
 
 ```
-## [1] "0x14b4fd30"
+## [1] "0x1de8ef90"
 ```
 
 ```r
@@ -133,7 +134,7 @@ obj_addr(X$a)
 ```
 
 ```
-## [1] "0x14b4fd30"
+## [1] "0x1de8ef90"
 ```
 
 ---
@@ -438,7 +439,7 @@ numeric_DT[ ,lapply(.SD, mean)]
 
 ```
 ##             a          b         c
-## 1: 0.06382081 -0.2432529 0.3149921
+## 1: -0.5744676 -0.3557319 0.2546456
 ```
 
 We can however change `.SD` to only contain a subset of all columns using `.SDcols`.
@@ -604,7 +605,20 @@ Looks for closest value of `t` in `DT` which is smaller than `t` in `LU`.
 
 1. Repeat the exercises from the chapter on `dplyr` using `data.table`. 
 2. Compare the speed of reading in the Boston crime dataset with `read.csv()` and `fread()`. Use the 
-   function `system.time()` to find out how long it takes.
+   function `system.time()` to find out how long it takes. 
+
+
+
+
+
+
+
+
+
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -658,6 +672,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -675,17 +715,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
