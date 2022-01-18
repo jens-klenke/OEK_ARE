@@ -97,12 +97,23 @@ To specify the margin of the first title h1
 .segue-red {
   text-align:center;
   vertical-align: middle;
-  background-color: #e64626;
-  color: #ffffff;
+  background-color:  #004c93;
+  color: #ffffff !important;
   text-shadow: 0 0 20px #333;
 }
 .segue-red .remark-slide-number {
   display: none;
+}
+
+.segue-red h1 {
+  color: #ffffff !important;
+  font-weight: normal;
+  font-size: 45px;
+}
+
+.segue-red h3 {
+  color: #ffffff !important;
+  font-weight: normal;
 }
 
 .segue-yellow {
