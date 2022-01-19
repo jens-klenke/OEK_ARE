@@ -45,7 +45,10 @@ h1, h2, h3 {
 /* change the line spread for readability
    and so that inline code highlighting 
    doesn't cover text on the line above */
-.remark-slide-content { font-size:24px; }
+.remark-slide-content {
+  font-size: 24px; 
+/*  color: #004c93; */
+}
 .remark-slide-content p, 
 .remark-slide-content li {
   line-height: 1.4;
@@ -77,7 +80,7 @@ h1, h2, h3 {
 /* code higlighting */
 .remark-code-string-highlighted, 
 .remark-code-line-highlighted {
-    background-color: yellow;
+    background-color: #b6c987; /*yellow; */
 }
 
 

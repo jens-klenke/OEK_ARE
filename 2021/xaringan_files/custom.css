@@ -36,6 +36,9 @@
     color:black;
 }
 
+strong {
+  color: #004c93;
+}
 
 /* for task boxes */
 .content-box-white {
@@ -47,7 +50,7 @@
 }
 
 .content-box-white strong {
- color:#e64626;
+ color: #004c93;
 }
 
 /* */
@@ -56,6 +59,6 @@
   overflow:hidden;
 }
 
-strong {
-  color:#e64626;
+.remark-slide-content strong {
+  color: #004c93;
 }
