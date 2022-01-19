@@ -25,7 +25,7 @@ output:
 # manualy!
 # install.packages("remotes")
 #remotes::install_github("mitchelloharawild/icons")
-#download_fontawesome()
+#icons::download_fontawesome()
 ```
 
 ```{r setup, include=FALSE}
