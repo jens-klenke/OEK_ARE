@@ -1,58 +1,6 @@
 
----
-## Assignment Operators (?)
 
-.smaller[
 
-- For consistency we use `<-` for binding and `=` for assigning function arguments.
-
-- Note, however, that there are reasonable [proposals](http://www.win-vector.com/blog/2016/12/the-case-for-using-in-r/comment-page-1/) for using other conventions.
-
-<br>
-.content-box-white[
-**Task:** 
-
-Find out what `->` does and think of an application where it might be useful.
-
-*Hint:* Experiment to find out about the precedence relation between `<-`, `->` and `=`.
-]]
-
-???
-
-- `->` is the right-assignment operator
-
-- The precedence relation is `->` >> `<-` >> `=` so `x <- 1 -> b` is another working alternative to the last line on the previous slide
-
----
-## Assignment Operators (?)
-
-.smaller[
-Assignment operators work in the environment they are invoked in. The super assignment operator `<<-` assigns in the enclosing environment, provided the binding exists there.
-
-.blockquote.exercise[
-#### `r icon::fa("desktop")` Example: super assignment
-
-```{r}
-var_GE <- 1
-
-a <- function(x) {
-  b <- function(x) var_GE <<- x
-  b(x)
-}
-
-a(3)
-var_GE
-```
-
-]]
-
-???
-
-- Note that functions generate their own environments upon execution. The *execution environment* of `a()` is the parent environment to `b()`.
-
-- If `<<-` does not find a corresponding binding in the enclosing environment, it looks in the parent environment and works it's way up towards to global environment (GE)
-
-- If the binding does not exist in the GE, it will be created there
 
 ---
 ## Bindings

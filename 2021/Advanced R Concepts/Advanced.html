@@ -23,10 +23,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../assets/sydney-fonts.css" type="text/css" />
-    <link rel="stylesheet" href="../assets/sydney.css" type="text/css" />
-    <link rel="stylesheet" href="../assets/title_slides.css" type="text/css" />
-    <link rel="stylesheet" href="../xaringan_files/custom.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/sydney-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/sydney.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/title_slides.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/xaringan_files/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -126,7 +126,7 @@ a &lt;- b = 1
 ```
 
 ```
-## Error in a &lt;- b = 1: could not find function "&lt;-&lt;-"
+## Error in a &lt;- b = 1: konnte Funktion "&lt;-&lt;-" nicht finden
 ```
 ]
 
@@ -143,6 +143,65 @@ a &lt;- b = 1
 
 - R interprets `a &lt;- b = 1` as `'&lt;-&lt;-'(a, b = 1, value = 1)`
 
+---
+## Assignment Operators (?)
+
+.smaller[
+
+- For consistency we use `&lt;-` for binding and `=` for assigning function arguments.
+
+- Note, however, that there are reasonable [proposals](http://www.win-vector.com/blog/2016/12/the-case-for-using-in-r/comment-page-1/) for using other conventions.
+
+&lt;br&gt;
+.content-box-white[
+**Task:** 
+
+Find out what `-&gt;` does and think of an application where it might be useful.
+
+*Hint:* Experiment to find out about the precedence relation between `&lt;-`, `-&gt;` and `=`.
+]]
+
+???
+
+- `-&gt;` is the right-assignment operator
+
+- The precedence relation is `-&gt;` &gt;&gt; `&lt;-` &gt;&gt; `=` so `x &lt;- 1 -&gt; b` is another working alternative to the last line on the previous slide
+
+---
+## Assignment Operators (?)
+
+.smaller[
+Assignment operators work in the environment they are invoked in. The super assignment operator `&lt;&lt;-` assigns in the enclosing environment, provided the binding exists there.
+
+.blockquote.exercise[
+#### &lt;svg viewBox="0 0 576 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"&gt;&lt;/path&gt;&lt;/svg&gt; Example: super assignment
+
+
+```r
+var_GE &lt;- 1
+
+a &lt;- function(x) {
+  b &lt;- function(x) var_GE &lt;&lt;- x
+  b(x)
+}
+
+a(3)
+var_GE
+```
+
+```
+## [1] 3
+```
+
+]]
+
+???
+
+- Note that functions generate their own environments upon execution. The *execution environment* of `a()` is the parent environment to `b()`.
+
+- If `&lt;&lt;-` does not find a corresponding binding in the enclosing environment, it looks in the parent environment and works it's way up towards to global environment (GE)
+
+- If the binding does not exist in the GE, it will be created there
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
