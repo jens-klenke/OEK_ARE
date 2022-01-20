@@ -7,34 +7,11 @@
   padding-right: 50px;
   padding-bottom: 25px;
 }
-/* 
-To specify the margin of the first title h1
-*/
-.remark-slide-content > h1:first-of-type {
-  color: #004c93; /* #e64626; */
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-.remark-slide-content > h2:first-of-type {
-  color: #004c93; /* #e64626; */
-/*  font-weight: bold; */
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-.remark-slide-content > h3:first-of-type {
-  color: #004c93; /* #e64626; */
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-.remark-slide-content > h4:first-of-type {
-  color: #004c93; /* #e64626; */
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
+
 
 
 /*************************
-  Custom classes 
+          orientation
 **************************/
 
 .pull-left-2 {
@@ -56,11 +33,46 @@ To specify the margin of the first title h1
 }
 
 
+.pull-right {
+  float: right;
+  width: 48%;
+}
+
+.pull-left {
+  float: left;
+  width: 48%;
+}
+
 /* use to position text at the bottom */
 .pull-down {
   position: absolute;
-  bottom: 50px;
+  bottom: 100px;
 }
+
+.columns-2 {
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  columns: 2;
+  -webkit-column-gap: 1em;
+  -moz-column-gap: 1em;
+  column-gap: 1em;
+}
+
+.columns-21 {
+  -webkit-columns: 66%, 33%;
+  -moz-columns: 66%, 33%;
+  columns: 66%, 33%;
+  -webkit-column-gap: 1em;
+  -moz-column-gap: 1em;
+  column-gap: 1em;
+}
+
+
+
+/*************************
+          other main classes 
+**************************/
+
 
 /* Change default inverse background colour */
 .inverse {
@@ -137,43 +149,21 @@ it from other content slides */
   background-color:white;
 }
 
+/*************************
+          other stuff  
+**************************/
+
 /* link colour */
 a { 
     color: #0148A4; 
 } 
 
-.columns-2 {
-  -webkit-columns: 2;
-  -moz-columns: 2;
-  columns: 2;
-  -webkit-column-gap: 1em;
-  -moz-column-gap: 1em;
-  column-gap: 1em;
-}
 
-.columns-21 {
-  -webkit-columns: 66%, 33%;
-  -moz-columns: 66%, 33%;
-  columns: 66%, 33%;
-  -webkit-column-gap: 1em;
-  -moz-column-gap: 1em;
-  column-gap: 1em;
-}
 
 
 
 /******************
- * Slide scrolling
- * (non-functional)
- * not sure if it is a good idea anyway
-slides > slide {
-  overflow: scroll;
- padding: 5px 40px;
-}
-.scrollable-slide .remark-slide {
-  height: 400px;
-  overflow: scroll !important;
-}
+ * scroll-boxes
  ******************/
 
 .scroll-box-8 {
@@ -357,20 +347,9 @@ slides > slide {
 
 
 /*~~~~~~~~~~~~~~~~*/
-/* USYD additions */
+/* UDE additions */
 /*~~~~~~~~~~~~~~~~*/
 
-/* Title slide */
-/*Add image and change bg color*/
-/*.title-slide {
-  background-image: url(USydLogo-black.svg), url("title-image.jpg");
-  background-image: url(https://sydney.edu.au/etc/designs/corporate-commons/bower_components/corporate-frontend/dist/assets/img/USydLogo.svg); 
-  background-position: 10% 90%, 100% 50%;
-  background-size: 160px, 50% 100%;
-  background-color: #e64626;
-  padding-left: 100px;   delete this for 4:3 aspect ratio
-
-} */
 
 .title-slide {
     background-color:  #004c93;  /*#e64626; */
@@ -383,39 +362,7 @@ slides > slide {
   padding-left: 100px;   delete this for 4:3 aspect ratio */
 }
 
-/* H1 fonts  */
-.title-slide h1 {
-  color: #ffffff !important;
-  font-weight: normal;
-  font-size: 45px;
-  padding: 20px;
-  text-align: left;
-  vertical-align: middle;
-  margin-bottom: 18px;
-}
 
-/* H2 fonts */
-.title-slide h2 {
-  color: #ffffff !important;
-  font-size: 35px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  margin-top: 0px;
-  text-align: left;
-  vertical-align: middle;
-}
-
-/* H3 fonts */
-.title-slide h3 {
-  font-size: 28px;
-  font-weight: normal;
-  color: white;
-  padding-left: 20px;
-  margin: 0px;
-  line-height: 1;
-  text-align: left;
-  vertical-align: middle;
-}
 
 /* Remove slide count */
 .title-slide .remark-slide-number {
@@ -445,22 +392,7 @@ blockquote, .blockquote {
   margin-top: 0px;
   margin-bottom: 5px;
 }
-.blockquote > h1:first-of-type {
-  margin-top: 0px;
-  margin-bottom: 5px;
-}
-.blockquote > h2:first-of-type {
-  margin-top: 0px;
-  margin-bottom: 5px;
-}
-.blockquote > h3:first-of-type {
-  margin-top: 0px;
-  margin-bottom: 5px;
-}
-.blockquote > h4:first-of-type {
-  margin-top: 0px;
-  margin-bottom: 5px;
-}
+
 
 .text-shadow {
   text-shadow: 0 0 4px #424242;
@@ -476,37 +408,6 @@ blockquote, .blockquote {
 https://github.com/yihui/xaringan/tree/master/inst/rmarkdown/templates/xaringan/resources
 */
 
-
-
-/* 
-Masterbrand charcoal #424242; 
-C=0 M=0 Y=0 K=90 
-R=66 G=66 B=66 
-
-Masterbrand red #e64626;
-C=0 M=0 Y=0 K=90
-R=66 G=66 B=66 
-
-Masterbrand white #ffffff;
-C=0 M=0 Y=0 K=0
-R=255 G=255 B=255
-
-Masterbrand black #000000;
-C=0 M=0 Y=0 K=100
-R=10 G=10 B=10
-
-Accent yellow #FFB800
-C=0 M=25 Y=98 K=0
-R=255 G=184 B=0 
-
-Accent blue #0148A4
-C=100 M=61 Y=0 K=0
-R=1 G=72 B=164 
-
-Accent grey - supportive #F1F1F1
-C=0 M=0 Y=0 K=10
-R=241 G=241 B=241 
-*/
 
 
 .remark-slide table {

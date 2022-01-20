@@ -1,23 +1,24 @@
 ---
-title: "Advanced R for Econometricians"
-subtitle: "Introduction"
-author:  
-  - "Martin Arnold"
-  - "Jens Klenke"
-date: '`r Sys.Date()`'
+title: "Introduction"
+subtitle: "Advanced R Concepts"
+author: "Martin C. Arnold"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    self_contained: false
-    seal: false
-    lib_dir: libs
+    css: ["default", "../assets/sydney-fonts.css", "../assets/sydney.css", "../assets/title_slides.css", "../xaringan_files/custom.css"]
+    self_contained: false # if true, fonts will be stored locally
+    seal: false # show a title slide with YAML information
     includes:
-      in_header: "../assets/meta.html"
-    css: ["default", "../assets/sydney-fonts.css", "../assets/sydney.css", "../assets/custom.css", "../assets/title_slides.css"]
+      in_header: "../assets/mathjax-equation-numbers.html"
+      after_body: "../assets/copybutton.html"
     nature:
+      beforeInit: ["../assets/remark-zoom.js", "../xaringan_files/macros.js", "https://platform.twitter.com/widgets.js"]
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      ratio: "16:9"
+      ratio: '16:9' # alternatives '16:9' or '4:3' or others e.g. 13:9
+      navigation:
+        scroll: false # disable slide transitions by scrolling
 ---
 
 ```{r setup, include=FALSE}
@@ -32,17 +33,20 @@ class: class: title-slide title-rintro center middle
 ---
 
 ## Preliminaries
-.left-column[Contact Information:  ]
 
-.right-column[
+.pull-left-1[**Contact Information:**  ]
+
+.pull-right-2[
 Jens Klenke  
-Jens.Klenke@vwl.uni-due.de
-    
-Martin Arnold  
-Martin Arnold@vwl.uni-due.de]
+<a href = "mailto: Jens.Klenke@vwl.uni-due.de">Jens.Klenke@vwl.uni-due.de</a>
 
+    
+Martin Arnold 
+<a href = "mailto: Martin Arnold@vwl.uni-due.de">Martin Arnold@vwl.uni-due.de</a>]
+
+.pull-down[
 <br>
-Slides, exercises and announcements will be provided on 
+Slides, exercises and announcements will be provided on: 
 .center[
   https://moodle.uni-due.de/course/view.php?id=17174  
 ]
@@ -50,12 +54,11 @@ Slides, exercises and announcements will be provided on
 The password for the course is **"Hadley"**.  
 <br>
 On Moodle you will find a link to [Datacamp](https://www.datacamp.com) which will give you free access to all their content. 
-
+]
 ???
 Background? 
 R and Rstudio installed? 
 What do you know about R? 
-
 
 ---
 ## Grading
@@ -78,7 +81,6 @@ the assignments (30%).
 3. Data Visualisation with ggplot 
 3. Data Wrangling and Transformation
    - dplyr
-   - data.table
    - databases
 4. Advanced R Programming 
   - Functional Programming
@@ -92,24 +94,23 @@ the assignments (30%).
   <li> Parallelisation </li>
   <li> Rcpp </li>
 </ul>
-<li> Web Scraping  </li>
-<li> Shiny </li>
-<li> Writing Packages </li>
-<li>Text Mining  </li>
+<li> Web Scraping<  </li>
+<li> <i>Shiny</i> </li>
+<li><i> Writing Packages</i> </li>
+<li><i> Text Mining</i>  </li>
 </ol>
 ]
 ---
 
 class: top, left
 ## About R
-
-- R is a language and environment for statistical computing and graphics.
-- R is highly extensible. There is a massive set of packages for statistical modelling, machine learning, visualisation, as well as importing and manipulating data. Researchers in statistics and machine learning often publish an R package to accompany their articles.
-- R is free and open source. 
-- R provides tools for communicating your results. R packages make it easy to produce html or pdf reports, or create interactive websites.
-- R is designed to connect to high-performance programming languages like C, Fortran, and C++.
-
-- R also has some disadvantages: 
+- **Advantages:**
+  - R is a language and environment for statistical computing and graphics.
+  - R is highly extensible. There is a massive set of packages for statistical modelling, machine learning, visualisation, as well as importing and manipulating data. Researchers in statistics and machine learning often publish an R package to accompany their articles.
+  - R is free and open source. 
+  - R provides tools for communicating your results. R packages make it easy to produce html or pdf reports, or create interactive websites.
+  - R is designed to connect to high-performance programming languages like C, Fortran, and C++.
+- **Disadavantages:**
   - It is not very fast.
   - It has an inconsistent syntax.
 
@@ -123,9 +124,6 @@ class: top, left
 - The [Use R!](https://www.springer.com/series/6991) Series by Springer
 - The [R Series](https://www.crcpress.com/go/the-r-series) by CRC Press
 
-
-
-
 ---
 class: top, left
 ## Packages
@@ -133,7 +131,7 @@ class: top, left
 - In R the fundamental unit of shareable code is the package.
 - Chances are that someone has already solved a problem that you’re working on, and you can benefit from their work by downloading their package.
 
-The main sources for packages are
+**The main sources for packages are:**
   - CRAN (Comprehensive R Archive Network) with as of now ca. 15.000 available packages
   - GitHub (that is the place where packages are developed before getting published on CRAN) 
   - Bioconductor
@@ -141,26 +139,26 @@ The main sources for packages are
 ---
 class: top, left
 ## Installing Packages
-
-How to install packages from CRAN?
+.font90[
+**How to install packages from CRAN?**
 
 - Use `install.packages("MASS")` to install the package `MASS` from CRAN.
 - Or using RStudio: Tools &rarr; Install Packages &rarr; `MASS`
 
-How to install packages from Github?
+**How to install packages from Github?**
 
 - Install the package `devtools` from CRAN.
 - E.g., use `devtools::install_github("tidymodels/broom")` to install the `broom` package from Github.
 
 - If you want to find out how a package works, search for
-.code70[
+
   - a vignette by the package authors 
     ```{r, echo = TRUE, eval = FALSE}
     library(broom)
     vignette("broom")
     ```
-  ]
   - a blog post about the package, e.g. on [R Bloggers](https://www.r-bloggers.com)
+  ]
 ---
 class: top, left
 
@@ -183,8 +181,10 @@ https://stackoverflow.com/questions/58121493/update-a-coordinate-dataframe-in-sh
 Good questions:  
 https://stackoverflow.com/questions/38777337/ggplot-ribbon-cut-off-at-y-limits/38777929#38777929 
 https://stackoverflow.com/questions/53241120/how-to-use-openblas-lapacke-together-with-rcpp
+
 ---
 ## Rstudio
+
 - RStudio is an integrated development environment (IDE) for R. 
 - It provides some convenient functionality compared to the IDE shipping with R.
 
@@ -194,7 +194,8 @@ https://stackoverflow.com/questions/53241120/how-to-use-openblas-lapacke-togethe
   share your code or work from different machines on the same project. 
 - Use projects instead.
 
-Workflow:
+#### Workflow
+
 - Instead of opening a new R session and use `setwd()` you open the project. The working path is 
 automatically set to the folder where the `.Rproj` file lives in. 
 
@@ -519,7 +520,7 @@ lazy_function()
 - Where possible, avoid using names of existing functions and variables. 
 .pull-left[
 .code70[
-    ```{r, eval = FALSE}
+```{r, eval = FALSE}
 # Good
 day_one
 day_1
@@ -527,7 +528,7 @@ day_1
 ]]
 .pull-right[
 .code70[
-```{r}
+```{r, eval = FALSE}
 # Bad
 first_day_of_the_month
 DayOne
