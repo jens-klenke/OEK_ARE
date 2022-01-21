@@ -53,8 +53,14 @@ body {
     ------------------------------------------- titels -----------------------------------------
     ------------------------------------------- h1, h2, h3, h4 ---------------------------------
 ******************************************************************************************************/ 
+h1, h2 {
+  font-family: 'Roboto Condensed';
+  font-weight: normal;
+  color: #004c93;
+  margin-bottom: 25px;
+} 
 
-h1, h2, h3, h4 {
+h3, h4 {
   font-family: 'Roboto Condensed';
   font-weight: bold;
   color: #004c93;
@@ -65,15 +71,14 @@ h1, h2, h3, h4 {
 .remark-slide-content h1 {
   color: #004c93; /* #e64626; */
   margin-top: 5px;
-  margin-bottom: 20px;
-  font-weight: bold;
+  margin-bottom: 25px;
+  font-weight: normal;
 }
 .remark-slide-content h2 {
-  color: #004c93; /* #e64626; */
-/*  font-weight: bold; */
+  color: #004c93;
   margin-top: 5px;
-  margin-bottom: 20px;
-  font-weight: bold;
+  margin-bottom: 25px;
+  font-weight: normal;
   
 }
 .remark-slide-content h3 {
@@ -103,6 +108,7 @@ h1, h2, h3, h4 {
 /* H2 fonts */
 .title-slide h2 {
   color: #ffffff !important;
+  font-weight: normal;
   font-size: 35px;
   padding-left: 20px;
   padding-bottom: 10px;
@@ -140,16 +146,24 @@ h1, h2, h3, h4 {
   margin-bottom: 5px;
 }
 
+.exercise > h4 {
+  color: #004c93;
+}
 
+.segue-red h1 {
+  color: #ffffff !important;
+  font-weight: normal;
+  font-size: 45px;
+}
+
+.segue-red h3 {
+  color: #ffffff !important;
+  font-weight: normal;
+}
 
 /* 
 ------------------------------------------- footnote -----------------------------------------
 */ 
-
-
-
-
-
 
 .footnote {
   position: absolute;
@@ -173,15 +187,11 @@ h1, h2, h3, h4 {
 
 
 
-
-
-
-
-
 /* code higlighting */
 .remark-code-string-highlighted, 
 .remark-code-line-highlighted {
     background-color: #b6c987; /*yellow; */
+    border-radius: 3px;
 }
 
 
@@ -246,3 +256,6 @@ h1, h2, h3, h4 {
 .bold { font-weight: bold; }
 .bolder { font-weight: bolder; }
 
+.text-shadow {
+  text-shadow: 0 0 4px #424242;
+}

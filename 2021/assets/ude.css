@@ -9,7 +9,6 @@
 }
 
 
-
 /*************************
           orientation
 **************************/
@@ -117,17 +116,6 @@
   display: none;
 }
 
-.segue-red h1 {
-  color: #ffffff !important;
-  font-weight: normal;
-  font-size: 45px;
-}
-
-.segue-red h3 {
-  color: #ffffff !important;
-  font-weight: normal;
-}
-
 .segue-yellow {
   text-align:center;
   vertical-align: middle;
@@ -200,13 +188,11 @@ a {
 }
 
 
-
- 
  /* inline code background */
  .remark-inline-code {
    /* until the link between code and mathjax 
    is broken, we need to use transparent */
-  background: transparent; /* #F5F5F5; /* lighter */
+  background: transparent; /* lighter */
   /* background: #e7e8e2; /* darker */
   border-radius: 3px;
   padding: 2px;
@@ -394,9 +380,6 @@ blockquote, .blockquote {
 }
 
 
-.text-shadow {
-  text-shadow: 0 0 4px #424242;
-}
 
 /* if wanted to change mathjax formatting
 .remark-inline-code .mjx-chtml {
@@ -432,3 +415,8 @@ th, td { padding-right: 10px; }
 .remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) { background: #FFFFFF}
 
 
+/**/
+
+p span {
+  display: block;
+}

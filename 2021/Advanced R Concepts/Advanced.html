@@ -4,7 +4,7 @@
     <title>Advanced R for Econometricians</title>
     <meta charset="utf-8" />
     <meta name="author" content="Martin C. Arnold" />
-    <meta name="date" content="2022-01-20" />
+    <meta name="date" content="2022-01-21" />
     <script src="Advanced_files/header-attrs/header-attrs.js"></script>
     <link href="Advanced_files/remark-css/default.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
@@ -23,10 +23,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../assets/sydney-fonts.css" type="text/css" />
-    <link rel="stylesheet" href="../assets/sydney.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
     <link rel="stylesheet" href="../assets/title_slides.css" type="text/css" />
-    <link rel="stylesheet" href="../xaringan_files/custom.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -223,7 +223,7 @@ So what happens if we define a vector `x`? The idiom *'the object `x` stores the
   ![:image 40%](img/binding-2.png)
   ![:source 2019](Wickham)
 ]
-.pull-right[
+.pull-right[.code60[
   
   ```r
   x &lt;- c(1, 2, 3)
@@ -233,7 +233,7 @@ So what happens if we define a vector `x`? The idiom *'the object `x` stores the
   ```r
   y &lt;- x
   ```
-]]]
+]]]]
 
 ---
 ## Bindings &amp;mdash; Character Vectors
@@ -259,18 +259,18 @@ ref(x, character = TRUE)
 ```
 
 ```
-## o [1:0x161029ee968] &lt;chr&gt; 
-## +-[2:0x16174f29ec0] &lt;string: "a"&gt; 
-## +-[2:0x16174f29ec0] 
-## +-[3:0x16175d24a48] &lt;string: "abc"&gt; 
-## \-[4:0x1617513ba78] &lt;string: "d"&gt;
+## o [1:0x229e4920] &lt;chr&gt; 
+## +-[2:0x137f9c78] &lt;string: "a"&gt; 
+## +-[2:0x137f9c78] 
+## +-[3:0x1db70218] &lt;string: "abc"&gt; 
+## \-[4:0x139ed3e8] &lt;string: "d"&gt;
 ```
 ]]]
 
 ---
 ## Copy-on-modify
 
-.smaller[
+.font90[
 
 R's copy-on-modify behavior is blessing and curse: we may use references without the risk of breaking existing code but modifying a reference may trigger a copy of the value.
 
@@ -286,7 +286,7 @@ R's copy-on-modify behavior is blessing and curse: we may use references without
   ![:source 2019](Wickham)
 ]
 .pull-right[
-.smaller[
+.code90[.font90[
 
 ```r
 x &lt;- c(1, 2, 3)
@@ -306,7 +306,7 @@ obj_addr(x)
 ```
 
 ```
-## [1] "0x1617faf05e0"
+## [1] "0x22a351c0"
 ```
 
 ```r
@@ -314,9 +314,9 @@ obj_addr(y)
 ```
 
 ```
-## [1] "0x1617fac51d8"
+## [1] "0x22a62008"
 ```
-]
+]]
 ]]]
 
 ???
@@ -328,7 +328,7 @@ obj_addr(y)
 ---
 ## Copy-on-modify
 
-.smaller[
+.code90[.font90[
 
 We may use `tracemem()` to obtain info when a copy of an object is generated.
 
@@ -357,7 +357,7 @@ y[[3]] &lt;- 5
 untracemem(x)
 ```
 
-]]
+]]]
 
 ???
 
@@ -366,7 +366,7 @@ Simply put, a call stack describes the order of nested function calls.
 ---
 ## Copy-on-modify &amp;mdash; Function Calls
 
-.smaller[
+
 
 The above rules apply to function calls as well.
 
@@ -398,7 +398,7 @@ z &lt;- f(x) # no copy here!
 
 untracemem(x)
 ```
-]]]
+]]
 
 ???
 
@@ -407,7 +407,7 @@ No copy because `z` is just a reference to the value of `x`.
 ---
 ## Copy-on-modify &amp;mdash; Function Calls
 
-.smaller[
+
 
 &lt;br&gt;
 &lt;br&gt;
@@ -432,7 +432,7 @@ tracemem(x)
 
 untracemem(x)
 ```
-]]
+]
 
 ???
 
@@ -446,7 +446,7 @@ untracemem(x)
 ---
 ## Copy-on-modify &amp;mdash; Lists
 
-.smaller[
+.font90[.code90[
 
 Lists are special: list *elements are references* to values.
 
@@ -464,7 +464,7 @@ Which code statement generates the result shown in each diagram? What is special
 ]
 ![:image 20%](img/l-modify-2.png)
 ![:source 2019](Wickham)
-]]
+]]]
 
 ???
 
@@ -490,15 +490,15 @@ ref(l1, l2)
 ```
 
 ```
-## o [1:0x16101d560a8] &lt;list&gt; 
-## +-[2:0x1617e111dc0] &lt;dbl&gt; 
-## +-[3:0x1617e111df8] &lt;dbl&gt; 
-## \-[4:0x1617e0fd308] &lt;dbl&gt; 
+## o [1:0x126df8f0] &lt;list&gt; 
+## +-[2:0x1d7cb930] &lt;dbl&gt; 
+## +-[3:0x1d7cb8f8] &lt;dbl&gt; 
+## \-[4:0x1d7cb8c0] &lt;dbl&gt; 
 ##  
-## o [5:0x16101d1d148] &lt;list&gt; 
-## +-[2:0x1617e111dc0] 
-## +-[3:0x1617e111df8] 
-## \-[6:0x1617e0fd3e8] &lt;dbl&gt;
+## o [5:0x126edc40] &lt;list&gt; 
+## +-[2:0x1d7cb930] 
+## +-[3:0x1d7cb8f8] 
+## \-[6:0x1d7cb7e0] &lt;dbl&gt;
 ```
 
 ]
@@ -506,7 +506,7 @@ ref(l1, l2)
 ---
 ## Copy-on-modify &amp;mdash; Data frames
 
-.smaller[
+
 
 Data frames are list objects whose elements point to column vectors. 
 
@@ -529,7 +529,7 @@ d1 &lt;- data.frame(
 **Task**: 
 
 Explain why modifying a row of a data frame generally is more costly than changing a column.
-]]
+]
 
 ???
 
@@ -546,7 +546,7 @@ ref(d1)
 ---
 ## Exercises
 
-.smaller[
+.font90[.code90[
 
 1. Why is `tracemem(1:10)` not useful?
 
@@ -576,7 +576,7 @@ ref(d1)
     ## 680 B
     ```
 
-]
+]]
 
 ???
 
@@ -590,7 +590,7 @@ ref(d1)
 ---
 ## Modify-in-place
 
-.smaller[
+.font90[.code90[
 
 R modifies in-place in two cases:
 
@@ -620,7 +620,7 @@ obj_addr(v)
 ## [1] "0x7fcce1ca03d8"
 ```
 
-]]
+]]]
 
 ???
 
@@ -823,15 +823,15 @@ lobstr::ref(x)
 .pull-right[
 
 ```
-## o [1:0x1617e317778] &lt;list&gt; 
-## \-[2:0x16102ce8c68] &lt;int&gt;
+## o [1:0x22c70d08] &lt;list&gt; 
+## \-[2:0x1dc03e50] &lt;int&gt;
 ```
 
 ```
-## o [1:0x1617f9c8da0] &lt;list&gt; 
-## +-[2:0x16102ce8c68] &lt;int&gt; 
-## \-o [3:0x1617e317778] &lt;list&gt; 
-##   \-[2:0x16102ce8c68]
+## o [1:0x1230bc90] &lt;list&gt; 
+## +-[2:0x1dc03e50] &lt;int&gt; 
+## \-o [3:0x22c70d08] &lt;list&gt; 
+##   \-[2:0x1dc03e50]
 ```
 ]]]
 
@@ -988,8 +988,7 @@ names(formals(lm))[1:4]
 ```
 
 ```
-## [1] "formula" "data"   
-## [3] "subset"  "weights"
+## [1] "formula" "data"    "subset"  "weights"
 ```
 
 ```r
@@ -1052,9 +1051,9 @@ lobstr::ref(funs)
 ```
 
 ```
-## o [1:0x16102832f20] &lt;list&gt; 
-## +-[2:0x1617e726438] &lt;fn&gt; 
-## \-[3:0x1617e7264e0] &lt;fn&gt;
+## o [1:0x2288eff0] &lt;list&gt; 
+## +-[2:0x1c834520] &lt;fn&gt; 
+## \-[3:0x1c834478] &lt;fn&gt;
 ```
 
 ```r
@@ -1483,8 +1482,7 @@ x &lt;- `:`(1, 10); x
 ```
 
 ```
-##  [1]  1  2  3  4  5  6  7  8
-##  [9]  9 10
+##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
 ```r
@@ -1492,8 +1490,7 @@ x &lt;- `:`(1, 10); x
 ```
 
 ```
-##  [1]  1  2  3  4  5  6  7  8
-##  [9]  9 10
+##  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
 ]]

@@ -5,7 +5,7 @@ author: "Martin C. Arnold"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: ["default", "../assets/sydney-fonts.css", "../assets/sydney.css", "../assets/title_slides.css", "../xaringan_files/custom.css"]
+    css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/title_slides.css", "../assets/custom.css"]
     self_contained: false # if true, fonts will be stored locally
     seal: false # show a title slide with YAML information
     includes:
@@ -24,8 +24,8 @@ output:
 ```{r icons, include = FALSE, eval = FALSE}
 # manualy!
 # install.packages("remotes")
-#remotes::install_github("mitchelloharawild/icons")
-#icons::download_fontawesome()
+# remotes::install_github("mitchelloharawild/icons")
+# icons::download_fontawesome()
 ```
 
 ```{r setup, include=FALSE}
@@ -37,7 +37,6 @@ library(icons)
 
 # pre-define icons
 desktop <- fontawesome$solid$desktop
-
 ```
 
 class: title-slide title-rintro center middle
@@ -197,7 +196,7 @@ So what happens if we define a vector `x`? The idiom *'the object `x` stores the
   ![:image 40%](img/binding-2.png)
   ![:source 2019](Wickham)
 ]
-.pull-right[
+.pull-right[.code60[
   ```{r}
   x <- c(1, 2, 3)
   ```
@@ -205,7 +204,7 @@ So what happens if we define a vector `x`? The idiom *'the object `x` stores the
   ```{r}
   y <- x
   ```
-]]]
+]]]]
 
 ---
 ## Bindings &mdash; Character Vectors
@@ -233,7 +232,7 @@ ref(x, character = TRUE)
 ---
 ## Copy-on-modify
 
-.smaller[
+.font90[
 
 R's copy-on-modify behavior is blessing and curse: we may use references without the risk of breaking existing code but modifying a reference may trigger a copy of the value.
 
@@ -249,7 +248,7 @@ R's copy-on-modify behavior is blessing and curse: we may use references without
   ![:source 2019](Wickham)
 ]
 .pull-right[
-.smaller[
+.code90[.font90[
 ```{r}
 x <- c(1, 2, 3)
 y <- x
@@ -262,7 +261,7 @@ x
 obj_addr(x)
 obj_addr(y)
 ```
-]
+]]
 ]]]
 
 ???
@@ -274,7 +273,7 @@ obj_addr(y)
 ---
 ## Copy-on-modify
 
-.smaller[
+.code90[.font90[
 
 We may use `tracemem()` to obtain info when a copy of an object is generated.
 
@@ -303,7 +302,7 @@ y[[3]] <- 5
 untracemem(x)
 ```
 
-]]
+]]]
 
 ???
 
@@ -312,7 +311,7 @@ Simply put, a call stack describes the order of nested function calls.
 ---
 ## Copy-on-modify &mdash; Function Calls
 
-.smaller[
+
 
 The above rules apply to function calls as well.
 
@@ -342,7 +341,7 @@ z <- f(x) # no copy here!
 
 untracemem(x)
 ```
-]]]
+]]
 
 ???
 
@@ -351,7 +350,7 @@ No copy because `z` is just a reference to the value of `x`.
 ---
 ## Copy-on-modify &mdash; Function Calls
 
-.smaller[
+
 
 <br>
 <br>
@@ -376,7 +375,7 @@ tracemem(x)
 
 untracemem(x)
 ```
-]]
+]
 
 ???
 
@@ -390,7 +389,7 @@ untracemem(x)
 ---
 ## Copy-on-modify &mdash; Lists
 
-.smaller[
+.font90[.code90[
 
 Lists are special: list *elements are references* to values.
 
@@ -408,7 +407,7 @@ Which code statement generates the result shown in each diagram? What is special
 ]
 ![:image 20%](img/l-modify-2.png)
 ![:source 2019](Wickham)
-]]
+]]]
 
 ???
 
@@ -440,7 +439,7 @@ ref(l1, l2)
 ---
 ## Copy-on-modify &mdash; Data frames
 
-.smaller[
+
 
 Data frames are list objects whose elements point to column vectors. 
 
@@ -463,7 +462,7 @@ d1 <- data.frame(
 **Task**: 
 
 Explain why modifying a row of a data frame generally is more costly than changing a column.
-]]
+]
 
 ???
 
@@ -480,7 +479,7 @@ ref(d1)
 ---
 ## Exercises
 
-.smaller[
+.font90[.code90[
 
 1. Why is `tracemem(1:10)` not useful?
 
@@ -498,7 +497,7 @@ ref(d1)
     obj_size(1:1e6)
     ```
 
-]
+]]
 
 ???
 
@@ -512,7 +511,7 @@ ref(d1)
 ---
 ## Modify-in-place
 
-.smaller[
+.font90[.code90[
 
 R modifies in-place in two cases:
 
@@ -542,7 +541,7 @@ obj_addr(v)
 ## [1] "0x7fcce1ca03d8"
 ```
 
-]]
+]]]
 
 ???
 
