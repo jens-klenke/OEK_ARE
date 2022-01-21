@@ -23,10 +23,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../assets/ude_fonts.css" type="text/css" />
-    <link rel="stylesheet" href="../assets/ude.css" type="text/css" />
-    <link rel="stylesheet" href="../assets/title_slides.css" type="text/css" />
-    <link rel="stylesheet" href="../assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/ude_fonts.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/ude.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/title_slides.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -126,7 +126,7 @@ a &lt;- b = 1
 ```
 
 ```
-## Error in a &lt;- b = 1: could not find function "&lt;-&lt;-"
+## Error in a &lt;- b = 1: konnte Funktion "&lt;-&lt;-" nicht finden
 ```
 ]
 
@@ -259,11 +259,11 @@ ref(x, character = TRUE)
 ```
 
 ```
-## o [1:0x229e4920] &lt;chr&gt; 
-## +-[2:0x137f9c78] &lt;string: "a"&gt; 
-## +-[2:0x137f9c78] 
-## +-[3:0x1db70218] &lt;string: "abc"&gt; 
-## \-[4:0x139ed3e8] &lt;string: "d"&gt;
+## o [1:0x22a867b8] &lt;chr&gt; 
+## +-[2:0x13f09d70] &lt;string: "a"&gt; 
+## +-[2:0x13f09d70] 
+## +-[3:0x1dad78c8] &lt;string: "abc"&gt; 
+## \-[4:0x14101c10] &lt;string: "d"&gt;
 ```
 ]]]
 
@@ -306,7 +306,7 @@ obj_addr(x)
 ```
 
 ```
-## [1] "0x22a351c0"
+## [1] "0x22a32a18"
 ```
 
 ```r
@@ -314,7 +314,7 @@ obj_addr(y)
 ```
 
 ```
-## [1] "0x22a62008"
+## [1] "0x22a5f690"
 ```
 ]]
 ]]]
@@ -490,15 +490,15 @@ ref(l1, l2)
 ```
 
 ```
-## o [1:0x126df8f0] &lt;list&gt; 
-## +-[2:0x1d7cb930] &lt;dbl&gt; 
-## +-[3:0x1d7cb8f8] &lt;dbl&gt; 
-## \-[4:0x1d7cb8c0] &lt;dbl&gt; 
+## o [1:0x22a11670] &lt;list&gt; 
+## +-[2:0x1d584598] &lt;dbl&gt; 
+## +-[3:0x1d584560] &lt;dbl&gt; 
+## \-[4:0x1d584528] &lt;dbl&gt; 
 ##  
-## o [5:0x126edc40] &lt;list&gt; 
-## +-[2:0x1d7cb930] 
-## +-[3:0x1d7cb8f8] 
-## \-[6:0x1d7cb7e0] &lt;dbl&gt;
+## o [5:0x22909950] &lt;list&gt; 
+## +-[2:0x1d584598] 
+## +-[3:0x1d584560] 
+## \-[6:0x1d584448] &lt;dbl&gt;
 ```
 
 ]
@@ -823,15 +823,15 @@ lobstr::ref(x)
 .pull-right[
 
 ```
-## o [1:0x22c70d08] &lt;list&gt; 
-## \-[2:0x1dc03e50] &lt;int&gt;
+## o [1:0x22c65930] &lt;list&gt; 
+## \-[2:0x1d9f4660] &lt;int&gt;
 ```
 
 ```
-## o [1:0x1230bc90] &lt;list&gt; 
-## +-[2:0x1dc03e50] &lt;int&gt; 
-## \-o [3:0x22c70d08] &lt;list&gt; 
-##   \-[2:0x1dc03e50]
+## o [1:0x22caad98] &lt;list&gt; 
+## +-[2:0x1d9f4660] &lt;int&gt; 
+## \-o [3:0x22c65930] &lt;list&gt; 
+##   \-[2:0x1d9f4660]
 ```
 ]]]
 
@@ -914,8 +914,8 @@ gc()          # just for the side effect
 
 ```
 ##           used (Mb) gc trigger (Mb) max used (Mb)
-## Ncells  926203 49.5    1793705 95.8  1383308 73.9
-## Vcells 2099718 16.1    8388608 64.0  3049992 23.3
+## Ncells  692221 37.0    1366844   73  1366844 73.0
+## Vcells 1244101  9.5    8388608   64  2120088 16.2
 ```
 
 ```r
@@ -923,7 +923,7 @@ mem_used()    # total, but more exact
 ```
 
 ```
-## 68,669,008 B
+## 48,720,872 B
 ```
 ]]
 
@@ -1051,9 +1051,9 @@ lobstr::ref(funs)
 ```
 
 ```
-## o [1:0x2288eff0] &lt;list&gt; 
-## +-[2:0x1c834520] &lt;fn&gt; 
-## \-[3:0x1c834478] &lt;fn&gt;
+## o [1:0x22a0c110] &lt;list&gt; 
+## +-[2:0x17161258] &lt;fn&gt; 
+## \-[3:0x17161300] &lt;fn&gt;
 ```
 
 ```r
@@ -1390,7 +1390,7 @@ if (!is.null(x) &amp;&amp; x &gt; 0) {
     ```
     
     ```
-    ## Error in f(x = z^2, z = 2): object 'z' not found
+    ## Error in f(x = z^2, z = 2): Objekt 'z' nicht gefunden
     ```
 
 2. Explain what the `...` argument does by means of the following example:
