@@ -864,6 +864,8 @@ x = 5
 ]
 
 ---
+class: exercise_slide
+
 ## `r desktop` Exercises
 
 <ol start = "1" >
@@ -880,10 +882,10 @@ df_list <- lapply(0:4, function(j) data.frame(c1 = (1:5) + 5 * j,
 <li> Fix each of the following common data frame subsetting errors: </li>
 </ol>
 ```{r}
-    mtcars[mtcars$cyl = 4, ]
-    mtcars[-1:4, ]
-    mtcars[mtcars$cyl <= 5]
-    mtcars[mtcars$cyl == 4 | 6, ]
+mtcars[mtcars$cyl = 4, ]
+mtcars[-1:4, ]
+mtcars[mtcars$cyl <= 5]
+mtcars[mtcars$cyl == 4 | 6, ]
 ```
 
 <ol start = "3" >

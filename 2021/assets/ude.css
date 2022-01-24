@@ -137,6 +137,31 @@ it from other content slides */
   background-color:white;
 }
 
+/*
+.remark-code-line {
+  background-color: green;
+}
+*/
+
+.exercise_slide {
+  background-color: #dfe4f2;
+}
+
+.exercise_slide .remark-code-line {
+  background-color: #a7b3d7;
+  border-radius: 3px;
+  border-color: green;
+}
+
+.exercise_slide .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: .5em;
+    color: #333;
+    background: #a7b3d7;
+    border-radius: 15px;
+}
+
 /*************************
           other stuff  
 **************************/
@@ -146,7 +171,14 @@ a {
     color: #0148A4; 
 } 
 
-
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    color: #333;
+    background: #f8f8f8;
+    border-radius: 15px;
+}
 
 
 
@@ -307,7 +339,7 @@ a {
 
 @page { margin: 0; }
 @media print {
-  .inverse, .segue, .segue-yellow, .segue-red, .sydney-blue,
+  .inverse, .segue, .segue-yellow, .segue-red, .sydney-blue, .exercise,
   .sydney-yellow, .sydney-red {
     background-color: transparent;
     color: black;

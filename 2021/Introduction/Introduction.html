@@ -4,7 +4,7 @@
     <title>Advanced R for Econometricians</title>
     <meta charset="utf-8" />
     <meta name="author" content="Martin C. Arnold &amp; Jens Klenke" />
-    <meta name="date" content="2022-01-23" />
+    <meta name="date" content="2022-01-25" />
     <script src="Introduction_files/header-attrs-2.8/header-attrs.js"></script>
     <link href="Introduction_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
@@ -932,6 +932,8 @@ x = 5
 ]
 
 ---
+class: exercise_slide
+
 ## &lt;svg viewBox="0 0 576 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#004c93;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"&gt;&lt;/path&gt;&lt;/svg&gt; Exercises
 
 &lt;ol start = "1" &gt;
@@ -950,10 +952,10 @@ df_list &lt;- lapply(0:4, function(j) data.frame(c1 = (1:5) + 5 * j,
 &lt;/ol&gt;
 
 ```r
-    mtcars[mtcars$cyl = 4, ]
-    mtcars[-1:4, ]
-    mtcars[mtcars$cyl &lt;= 5]
-    mtcars[mtcars$cyl == 4 | 6, ]
+mtcars[mtcars$cyl = 4, ]
+mtcars[-1:4, ]
+mtcars[mtcars$cyl &lt;= 5]
+mtcars[mtcars$cyl == 4 | 6, ]
 ```
 
 &lt;ol start = "3" &gt;
@@ -1146,7 +1148,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       
 
       // add the button just after the text in the code block w/ jquery
-      var clipButton = '<img src="../assets/clipboard-svgrepo-com.svg" width="16" alt="Copy to clipboard" onclick=copyToClipboard("#' + currentId + '") style="float:right;cursor:pointer;">';
+      var clipButton = '<img src="../assets/clipboard-svgrepo-com.svg" width="20" alt="Copy to clipboard" onclick=copyToClipboard("#' + currentId + '") style="float:right;cursor:pointer;">';
       $(this).prepend(clipButton);
     });
     
