@@ -1,19 +1,20 @@
 ---
 title: "Advanced R for Econometricians"
 subtitle: "Reproducible Research with R Markdown"
-author:  
+author:
   - "Martin Arnold"
   - "Jens Klenke"
-date: "5 November 2018"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: ["default", "../assets/sydney-fonts.css", "../assets/sydney.css", "../assets/custom.css", "../assets/title_slides.css"]
+    css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/title_slides.css", "../assets/custom.css"]
     self_contained: false # if true, fonts will be stored locally
     seal: false # show a title slide with YAML information
     includes:
-      in_header: ["../assets/mathjax-equation-numbers.html", "../assets/meta.html"]
+      in_header: "../assets/mathjax-equation-numbers.html"
+      after_body: "../assets/copybutton.html"
     nature:
-      beforeInit: ["../assets/remark-zoom.js", "https://platform.twitter.com/widgets.js"]
+      beforeInit: ["../assets/remark-zoom.js", "../xaringan_files/macros.js", "https://platform.twitter.com/widgets.js"]
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -32,12 +33,12 @@ class: title-slide title-rmarkdown center middle
 
 # `r rmarkdown::metadata$title`
 ## `r rmarkdown::metadata$subtitle`
-
+### `r rmarkdown::metadata$author` 
 ---
 class: left, top
 ## R Markdown
 
-R Markdown provides a framework for combining  code, results, and commentary.
+R Markdown provides a framework for combining code, results, and commentary.
 
 You can use R Markdown 
 
@@ -45,12 +46,18 @@ You can use R Markdown
 - as an environment in which to do data science, as a lab notebook where 
   you can capture not only what you did, but also what you were thinking. 
 
-Some interesting links: 
+--
+
+**Some interesting links:**
+
 - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/xaringan-format.html) 
 - [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
 - [Cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
 
-Example:
+--
+
+**Example:**
+
 - [Introduction to Econometrics with R](https://www.econometrics-with-r.org)
 
 ---
@@ -63,7 +70,9 @@ class: left, top
 ]
 ---
 class: left, top
+
 ## Basic example
+
 .code70[
 
 ```{r echo=FALSE, comment = "", size="tiny"}
@@ -72,13 +81,20 @@ cat(htmltools::includeText("diamond-sizes.Rmd"))
 
 ]
 
-- If this is stored as `example.rmd` in your working directory run `knitr::render(example.rmd)` to create an output document. Alternatively, hit the `r knitr::include_graphics("../img/knit.PNG")` button in Rstudio. 
+--
+
+.font70[
+- If this is stored as `example.rmd` in your working directory run `knitr::render(example.rmd)` to create an output document. 
+- Alternatively, hit the `r knitr::include_graphics("../img/knit.PNG")` button in Rstudio.
+- Or you can use the short key combination `Ctrl + Shift + K`
+]
+
 ---
 class: left, top
 
 ## How it works 
 
-<br> <br>
+<br> 
 
 An R Markdown document is a basic text file, with the (conventional) extension `.Rmd`.
 
@@ -95,18 +111,23 @@ class: left, top
 
 ## How it works 
 
-<br> <br>
+<br>
 
 When we click **knit** in RStudio then 
 1. the `knitr` package executes the code chunks and creates a markdown document (`.md`) which contains the text we have written and optionally the code and its output 
-2. the `.md` file gets processed by `pandoc` which creates the final file in the desired output format (e.g. `html`, `pdf`, `word`, ...)  
+2. the `.md` file gets processed by `pandoc` which creates the final file in the desired output format (e.g. `html`, `pdf`, `word`, ...)
+
+<br>
+
 .center[
 ![](rendering_process.PNG)
 ]
+
 ---
 class: left, top
 
 ## The YAML header
+
 The YAML header contains settings passed to pandoc and the rendering functions.
 Here you can: 
 - specify the output format with optional output specific options 
@@ -114,7 +135,10 @@ Here you can:
 - include external files (e.g. `.css`) or additional packages for $\LaTeX$
 - define parameters. 
 
-Basic YAML header using mostly defaults
+--
+
+**Basic YAML header using mostly defaults**
+
 ```yaml
 ---
 title: Habits
@@ -148,6 +172,7 @@ params:
 
 ---
 class: left, top
+
 ## Output Formats
 
 - [`html_notebook`](https://bookdown.org/yihui/rmarkdown/notebook.html)      - Interactive R Notebooks  
@@ -155,10 +180,13 @@ class: left, top
 - [`pdf_document`](https://bookdown.org/yihui/rmarkdown/pdf-document.html)   &nbsp; - PDF document
 - [`word_document`](https://bookdown.org/yihui/rmarkdown/word-document.html) - Microsoft Word document 
 
+<br>
+
 Learn more about further output formats at [https://rmarkdown.rstudio.com](https://rmarkdown.rstudio.com/lesson-9.html).
 
 ---
 class: left, top
+
 ## Text Formatting
 
 - R Markdown is built on [Pandoc Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex#pandoc_markdown), which in turn is a flavour of the markup language Markdown.  
@@ -189,6 +217,8 @@ Some examples:
  
 ]
 
+--
+
 .pull-right[ 
 
 - Inline formatting  
@@ -209,6 +239,7 @@ Some examples:
 
 ---
 class: left, top
+
 ## Text Formatting
 
 .pull-left[
@@ -231,6 +262,8 @@ class: left, top
 
 ]
 
+--
+
 .pull-right[ 
 
 - Ordered Lists
@@ -251,10 +284,13 @@ class: left, top
 
 ]
 
-Note that Markdown does not support nested ordered lists with numbering 1.1, 1.2.1 and so on. For this, you would have to fall back to HTML or $\LaTeX$. 
+--
+
+**Note:** Markdown does not support nested ordered lists with numbering 1.1, 1.2.1 and so on. For this, you would have to fall back to HTML or $\LaTeX$. 
 
 ---
 class: left, top
+
 ## Text Formatting
 
 <br>
@@ -274,6 +310,8 @@ Second line
 A new line is started by two whitespaces at the end of the previous line (which you cannot see here).
 
 ]
+
+--
 
 .pull-right[ 
 
@@ -302,12 +340,17 @@ class: left, top
 
 When rendering to a pdf $\LaTeX{}$ can be used throughout the document.  
 Through `MathJax` the $\LaTeX{}$ math mode can also be used for HTML output as follows: 
+
+--
+
 - Inline $\LaTeX{}$ equations can be written within dollar signs.  
-    ```{r, comment = ""}
+```{r, comment = ""}
 cat("This is an inline equation $f(x)=\\frac{1}{\\sqrt{2\\pi}}\\exp{\\left(-\\frac{1}{2}x^2\\right)}$.")
-    ```
+```
   
-  This is an inline equation $f(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}x^2\right)}$.
+This is an inline equation $f(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}x^2\right)}$.
+
+--
   
 - Display style $\LaTeX{}$ equations can be written within double dollar signs.  
     ```{r, comment = ""}
@@ -318,7 +361,9 @@ This is display style $$f(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}x^2\rig
 ---
 class: left, top
 ## Math Expressions
+
 - Even more complex math environments such as `align` can be used 
+
     ```{r echo=FALSE, comment = ""}
 cat("
 \\begin{align}
@@ -330,6 +375,8 @@ cat("
     ```
 
 <br>   
+
+--
 
 \\begin{align}
 (a+b)^{3} &=(a+b)(a+b)^{2} \\\\
@@ -345,7 +392,11 @@ class: left, top
 - You can write arbitrary R code in a code chunk (e.g. run a regression and produce a plot of the result). 
 - The code, the result of the code or both can be included into the final document. 
 - In the top curly braces, chunk options can be set to control how the output is handled.
+]
 
+--
+
+.font90[
 Some useful options: 
   - `eval`(`TRUE`; logical): whether to evaluate the code chunk  
   - `echo`(`TRUE`; logical or numeric): whether to include R source code in the output file
@@ -353,10 +404,19 @@ Some useful options:
   - `warning` (`TRUE`; logical): whether to preserve warnings 
   - `message` (`TRUE`; logical): whether to preserve messages 
   - `include` (`TRUE`; logical): whether to include the chunk output in the final output document
-  
-For a complete list, we refer to the `knitr` documentation: [Chunk options](https://yihui.name/knitr/options#code-evaluation).
+]
 
+--
+
+.font90[
+For a complete list, we refer to the `knitr` documentation: [Chunk options](https://yihui.name/knitr/options#code-evaluation).
+]
+
+--
+
+.font90[
 - Press `Ctrl + Alt + I` to insert a new R code chunk.
+
 ]
 ---
 class: left, top
@@ -420,6 +480,8 @@ Tables can be created as follows:
 ```
 ]
 
+--
+
 .pull-right[ 
 
 
@@ -430,7 +492,10 @@ Tables can be created as follows:
 |   1   |   1  |   1     |   1    | 
 
 ]
-<br> <br>
+<br>
+
+--
+
 In general, however, tables should be produced by your code.
 The following slides show some examples. 
 
@@ -450,6 +515,8 @@ knitr::kable(result, align = c("r", "l", "l", "c"), format = "html")
 ```
 ````
 
+--
+
 ```{r}
 result        <- data.frame(rbind(rep(12,4), rep(123, 4), rep(1,4)))
 names(result) <- c("Right", "Left", "Default", "Center")
@@ -461,17 +528,23 @@ class: left, top
 ## `kableExtra`
 
 - The appearance of a table (not only produced by `knitr::kable()`) depends on the underlying `css` (in case of an HTML document) or the generated $\LaTeX{}$ code. 
-- `kableExtra` allows to format your `knitr::kable()` table without the use of `css` or $\LaTeX{}$
+- The package `kableExtra` allows to format your `knitr::kable()` table without the use of `css` or $\LaTeX{}$
+
+--
 
 ````markdown
 `r ''````{r}
 library(magrittr)
+library(kableExtra)
 knitr::kable(result, 
              align = c("r", "l", "l", "c"), 
              format = "html") %>%  
   kableExtra::kable_styling(bootstrap_options = "bordered")
 ```
 ````
+
+--
+
 - Have a look at the [kableExtra vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
 for examples. 
 
@@ -482,6 +555,8 @@ class: left, top
 - `xtable` provides more functionality than kable but is a bit more difficult to use.
 - If your code produces raw HTML or $\LaTeX{}$ e.g. for a table then you have to set `results='asis'`  in the  chunk options, otherwise it gets formatted and will not work as intended.
 
+--
+
 ````markdown
 `r ''````{r, echo=FALSE, results='asis'}
 library(xtable)
@@ -490,6 +565,8 @@ my_xtable <- xtable(result, align = c("r", "r", "l", "l", "c"))
 print.xtable(my_xtable, type  = "html", include.rownames = FALSE)
 ```
 ````
+
+--
 
 ```{r, echo=FALSE, results='asis'}
 library(xtable)
@@ -519,6 +596,9 @@ stargazer::stargazer(linear_model,
 ```
 ````
 ]
+
+--
+
 .pull-right[
 <br> 
 .left[
@@ -541,6 +621,8 @@ hist(rnorm(1000))
 ```
 ````
 
+--
+
 ```{r, fig.height = 5}
 hist(rnorm(1000))
 ```
@@ -555,11 +637,15 @@ class: left, top
 [This is a link to the R Markdown book](https://bookdown.org/yihui/rmarkdown/)
 ```
 
+--
+
 - To include figures saved on your computer use
 
 ```markdown
 ![Figure Description](path/to/figure.png)
 ```
+
+--
 
 - If you need more control over the appearence of the figure you can use
 
@@ -593,6 +679,7 @@ class: left, top
 - There are R packages producing interactive output e.g. `plotly` for interactive plots or
 `leaflet` for interactive maps. 
 
+--
 
 ````markdown
 `r ''````{r}
@@ -612,6 +699,7 @@ plot_ly(mtcars, x = ~wt, y = ~hp, z = ~qsec, color = ~am, colors = c('#BF382A', 
 ---
 class: left, top
 ## Interactive documents
+
 ```{r, out.width='90%', out.height='70%'}
 library(plotly)
 # Prepare Data
@@ -625,6 +713,8 @@ plot_ly(mtcars, x = ~wt, y = ~hp, z = ~qsec, color = ~am, colors = c('#BF382A', 
                      yaxis = list(title = 'Gross horsepower'),
                      zaxis = list(title = '1/4 mile time')))
 ```
+
+--
 
 - For more examples see [plot.ly](https://plot.ly/r/).
 
@@ -644,6 +734,9 @@ leaflet() %>% addTiles() %>%
   )
 ```
 ````
+
+--
+
 - Learn more at [Leaflet for R](https://rstudio.github.io/leaflet).
 ---
 class: left, top
@@ -654,7 +747,7 @@ library(leaflet)
 leaflet() %>% addTiles() %>%
   setView(7.005070, 51.463675,zoom = 17) %>%
   addMarkers(
-    7.005070, 51.463675 # Uni Essen 
+    7.005070, 51.463675, label = "Uni DUE"  # Uni Essen 
   )
 ```
 
@@ -674,13 +767,14 @@ DT::datatable(
 ```
 ````
 
+.scroll-box-8[
 ```{r}
 DT::datatable(
   head(iris, 10),
   fillContainer = TRUE, options = list(pageLength = 5)
 )
 ```
-
+]
 
 ---
 class: left, top
@@ -689,8 +783,14 @@ class: left, top
 - You can define your own chunk options using hooks. This is a topic for you if you want to become 
 a professional `knitr` user. 
 
+--
+
 #### Chunk Hooks 
+
+.font80[
 - A chunk hook is a function defining what should happen before or after a code chunk.
+]
+
 .code70[
 ```{r, echo=TRUE}
 # Template for a chunk hook
@@ -705,10 +805,14 @@ foo_hook = function(before, options, envir) {
 ```
 ]
 
+--
+
+.font80[
 - Before the chunk is evaluated the function is called with `before == TRUE`  
 and after with `before == FALSE`.
 - `options` is a list with the current chunk options (optional). 
 - `envir` is the enviornment in which the the code chunk is evaluated (optional).
+]
 
 ---
 class: left, top
@@ -724,6 +828,8 @@ knitr::knit_hooks$set(small.mar = function(before) {
 })
 ```
 ````
+--
+
 - `small.mar` now can be used as other chunk options. 
 
 ````markdown
@@ -785,7 +891,9 @@ class: left, top
 
 - `here::here()` is returning the path to the directory where your project file lives in. 
 
-Why is this useful? 
+--
+
+**Why is this useful?** 
 
 - If an Rmarkdown file is compiled it sets the working directory to the folder where your `.rmd` file is stored.
 - Usually you do some interactive work before compiling. If you work in an project then the working directory 
@@ -793,14 +901,18 @@ Why is this useful?
 - If your project becomes more complex and you are using subdirectories the working directory set for compilation
   and interactive work are not necessary the same. This is quite annoying.
 
+--
+
 #### Solution
 
 - use `here::here()` when setting a path.
-    ```{r, eval = FALSE, echo=TRUE}
+
+```{r, eval = FALSE, echo=TRUE}
 load(here::here("Data", "my_dataset.rda"))
-    ```
+```
+
 ---
-class: left, top
+class: exercise_slide
 ## Exercises
 
 1. Create an R Markdown document that is compiled to an HTML document. 
@@ -821,7 +933,7 @@ table `RMS_Crime_Incident_Field_Explanation`.
    installed. 
 
 ---
-class: left, top
+class: exercise_slide
 ## Exercises
 <ol start="7"> 
 <li>  Remember that nested ordered lists are not supported by Rmarkdown. Produce one nonetheless in your HTML and your PDF document. </li>
