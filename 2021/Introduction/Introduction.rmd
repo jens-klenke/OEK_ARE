@@ -1,7 +1,9 @@
 ---
 title: "Advanced R for Econometricians"
 subtitle: "Introduction"
-author: "Martin C. Arnold & Jens Klenke"
+author: 
+  - "Martin C. Arnold"
+  - "Jens Klenke"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
@@ -336,7 +338,7 @@ class: top, left
 
 You should know how to use the common subsetting operators  `[`, `[[` and `$`. 
 
-Have you ever encounterd `@`? 
+Have you ever encountered `@`? 
 
 --
 

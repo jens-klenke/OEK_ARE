@@ -2,7 +2,7 @@
 title: "Advanced R for Econometricians"
 subtitle: "Reproducible Research with R Markdown"
 author:
-  - "Martin Arnold"
+  - "Martin C. Arnold"
   - "Jens Klenke"
 date: "`r Sys.Date()`"
 output:
@@ -767,14 +767,13 @@ DT::datatable(
 ```
 ````
 
-.scroll-box-8[
 ```{r}
 DT::datatable(
   head(iris, 10),
   fillContainer = TRUE, options = list(pageLength = 5)
 )
 ```
-]
+
 
 ---
 class: left, top

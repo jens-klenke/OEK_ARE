@@ -144,13 +144,12 @@ it from other content slides */
 */
 
 .exercise_slide {
-  background-color: #dfe4f2;
+  background-color: #dfe4f2; /* #dfe4f2 #efe4bf; */
 }
 
 .exercise_slide .remark-code-line {
-  background-color: #a7b3d7;
+  background-color: #FFFFFF; /* #dfe4f2; /* #a7b3d7; */ 
   border-radius: 3px;
-  border-color: green;
 }
 
 .exercise_slide .hljs {
@@ -158,7 +157,7 @@ it from other content slides */
     overflow-x: auto;
     padding: .5em;
     color: #333;
-    background: #a7b3d7;
+    background: #FFFFFF; /*  #dfe4f2; /*#a7b3d7; */
     border-radius: 15px;
 }
 
