@@ -3,31 +3,30 @@
   <head>
     <title>Advanced R for Econometricians</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Martin C. Arnold" />
-    <meta name="author" content="Jens Klenke" />
-    <meta name="date" content="2022-02-02" />
-    <script src="rmarkdown_files/header-attrs/header-attrs.js"></script>
-    <link href="rmarkdown_files/remark-css/default.css" rel="stylesheet" />
-    <script src="rmarkdown_files/htmlwidgets/htmlwidgets.js"></script>
-    <script src="rmarkdown_files/plotly-binding/plotly.js"></script>
-    <script src="rmarkdown_files/typedarray/typedarray.min.js"></script>
-    <script src="rmarkdown_files/jquery/jquery-3.6.0.min.js"></script>
-    <link href="rmarkdown_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
-    <script src="rmarkdown_files/crosstalk/js/crosstalk.min.js"></script>
-    <link href="rmarkdown_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
-    <script src="rmarkdown_files/plotly-main/plotly-latest.min.js"></script>
-    <link href="rmarkdown_files/leaflet/leaflet.css" rel="stylesheet" />
-    <script src="rmarkdown_files/leaflet/leaflet.js"></script>
-    <link href="rmarkdown_files/leafletfix/leafletfix.css" rel="stylesheet" />
-    <script src="rmarkdown_files/proj4/proj4.min.js"></script>
-    <script src="rmarkdown_files/Proj4Leaflet/proj4leaflet.js"></script>
-    <link href="rmarkdown_files/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
-    <script src="rmarkdown_files/leaflet-binding/leaflet.js"></script>
-    <link href="rmarkdown_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="rmarkdown_files/datatables-binding/datatables.js"></script>
-    <link href="rmarkdown_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="rmarkdown_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="rmarkdown_files/dt-core/js/jquery.dataTables.min.js"></script>
+    <meta name="author" content="Alexander Gerber" />
+    <meta name="date" content="2018-11-05" />
+    <script src="try_files/header-attrs/header-attrs.js"></script>
+    <link href="try_files/remark-css/default.css" rel="stylesheet" />
+    <script src="try_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="try_files/plotly-binding/plotly.js"></script>
+    <script src="try_files/typedarray/typedarray.min.js"></script>
+    <script src="try_files/jquery/jquery-3.6.0.min.js"></script>
+    <link href="try_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="try_files/crosstalk/js/crosstalk.min.js"></script>
+    <link href="try_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="try_files/plotly-main/plotly-latest.min.js"></script>
+    <link href="try_files/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="try_files/leaflet/leaflet.js"></script>
+    <link href="try_files/leafletfix/leafletfix.css" rel="stylesheet" />
+    <script src="try_files/proj4/proj4.min.js"></script>
+    <script src="try_files/Proj4Leaflet/proj4leaflet.js"></script>
+    <link href="try_files/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="try_files/leaflet-binding/leaflet.js"></script>
+    <link href="try_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="try_files/datatables-binding/datatables.js"></script>
+    <link href="try_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="try_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="try_files/dt-core/js/jquery.dataTables.min.js"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -45,10 +44,10 @@
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
     <meta name="robots" content="noindex">
-    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/ude_fonts.css" type="text/css" />
-    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/ude.css" type="text/css" />
-    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/title_slides.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/sydney-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/sydney.css" type="text/css" />
     <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="C:/Users/Jens-/Documents/GitHub/OEK_ARE/2021/assets/title_slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -60,12 +59,12 @@ class: title-slide title-rmarkdown center middle
 
 # Advanced R for Econometricians
 ## Reproducible Research with R Markdown
-### Martin C. Arnold, Jens Klenke 
+
 ---
 class: left, top
 ## R Markdown
 
-R Markdown provides a framework for combining code, results, and commentary.
+R Markdown provides a framework for combining  code, results, and commentary.
 
 You can use R Markdown 
 
@@ -73,18 +72,12 @@ You can use R Markdown
 - as an environment in which to do data science, as a lab notebook where 
   you can capture not only what you did, but also what you were thinking. 
 
---
-
-**Some interesting links:**
-
+Some interesting links: 
 - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/xaringan-format.html) 
 - [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
 - [Cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
 
---
-
-**Example:**
-
+Example:
 - [Introduction to Econometrics with R](https://www.econometrics-with-r.org)
 
 ---
@@ -97,9 +90,7 @@ class: left, top
 ]
 ---
 class: left, top
-
 ## Basic example
-
 .code70[
 
 
@@ -133,20 +124,13 @@ If $\frac{\alpha}{\beta} = \gamma$ then $\alpha = \gamma\beta$.
 
 ]
 
---
-
-.font70[
-- If this is stored as `example.rmd` in your working directory run `knitr::render(example.rmd)` to create an output document. 
-- Alternatively, hit the &lt;img src="../img/knit.PNG" width="79" /&gt; button in Rstudio.
-- Or you can use the short key combination `Ctrl + Shift + K`
-]
-
+- If this is stored as `example.rmd` in your working directory run `knitr::render(example.rmd)` to create an output document. Alternatively, hit the &lt;img src="../img/knit.PNG" width="79" /&gt; button in Rstudio. 
 ---
 class: left, top
 
 ## How it works 
 
-&lt;br&gt; 
+&lt;br&gt; &lt;br&gt;
 
 An R Markdown document is a basic text file, with the (conventional) extension `.Rmd`.
 
@@ -163,23 +147,18 @@ class: left, top
 
 ## How it works 
 
-&lt;br&gt;
+&lt;br&gt; &lt;br&gt;
 
 When we click **knit** in RStudio then 
 1. the `knitr` package executes the code chunks and creates a markdown document (`.md`) which contains the text we have written and optionally the code and its output 
-2. the `.md` file gets processed by `pandoc` which creates the final file in the desired output format (e.g. `html`, `pdf`, `word`, ...)
-
-&lt;br&gt;
-
+2. the `.md` file gets processed by `pandoc` which creates the final file in the desired output format (e.g. `html`, `pdf`, `word`, ...)  
 .center[
 ![](rendering_process.PNG)
 ]
-
 ---
 class: left, top
 
 ## The YAML header
-
 The YAML header contains settings passed to pandoc and the rendering functions.
 Here you can: 
 - specify the output format with optional output specific options 
@@ -187,10 +166,7 @@ Here you can:
 - include external files (e.g. `.css`) or additional packages for `\(\LaTeX\)`
 - define parameters. 
 
---
-
-**Basic YAML header using mostly defaults**
-
+Basic YAML header using mostly defaults
 ```yaml
 ---
 title: Habits
@@ -224,7 +200,6 @@ params:
 
 ---
 class: left, top
-
 ## Output Formats
 
 - [`html_notebook`](https://bookdown.org/yihui/rmarkdown/notebook.html)      - Interactive R Notebooks  
@@ -232,13 +207,10 @@ class: left, top
 - [`pdf_document`](https://bookdown.org/yihui/rmarkdown/pdf-document.html)   &amp;nbsp; - PDF document
 - [`word_document`](https://bookdown.org/yihui/rmarkdown/word-document.html) - Microsoft Word document 
 
-&lt;br&gt;
-
 Learn more about further output formats at [https://rmarkdown.rstudio.com](https://rmarkdown.rstudio.com/lesson-9.html).
 
 ---
 class: left, top
-
 ## Text Formatting
 
 - R Markdown is built on [Pandoc Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html%23raw-tex#pandoc_markdown), which in turn is a flavour of the markup language Markdown.  
@@ -269,8 +241,6 @@ Some examples:
  
 ]
 
---
-
 .pull-right[ 
 
 - Inline formatting  
@@ -291,7 +261,6 @@ Some examples:
 
 ---
 class: left, top
-
 ## Text Formatting
 
 .pull-left[
@@ -314,8 +283,6 @@ class: left, top
 
 ]
 
---
-
 .pull-right[ 
 
 - Ordered Lists
@@ -336,13 +303,10 @@ class: left, top
 
 ]
 
---
-
-**Note:** Markdown does not support nested ordered lists with numbering 1.1, 1.2.1 and so on. For this, you would have to fall back to HTML or `\(\LaTeX\)`. 
+Note that Markdown does not support nested ordered lists with numbering 1.1, 1.2.1 and so on. For this, you would have to fall back to HTML or `\(\LaTeX\)`. 
 
 ---
 class: left, top
-
 ## Text Formatting
 
 &lt;br&gt;
@@ -362,8 +326,6 @@ Second line
 A new line is started by two whitespaces at the end of the previous line (which you cannot see here).
 
 ]
-
---
 
 .pull-right[ 
 
@@ -392,18 +354,13 @@ class: left, top
 
 When rendering to a pdf `\(\LaTeX{}\)` can be used throughout the document.  
 Through `MathJax` the `\(\LaTeX{}\)` math mode can also be used for HTML output as follows: 
-
---
-
 - Inline `\(\LaTeX{}\)` equations can be written within dollar signs.  
-
-```
-This is an inline equation $f(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}x^2\right)}$.
-```
+    
+    ```
+    This is an inline equation $f(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}x^2\right)}$.
+    ```
   
-This is an inline equation `\(f(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}x^2\right)}\)`.
-
---
+  This is an inline equation `\(f(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}x^2\right)}\)`.
   
 - Display style `\(\LaTeX{}\)` equations can be written within double dollar signs.  
     
@@ -415,9 +372,7 @@ This is display style `$$f(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{1}{2}x^2\ri
 ---
 class: left, top
 ## Math Expressions
-
 - Even more complex math environments such as `align` can be used 
-
     
     ```
     
@@ -429,8 +384,6 @@ class: left, top
     ```
 
 &lt;br&gt;   
-
---
 
 \\begin{align}
 (a+b)^{3} &amp;=(a+b)(a+b)^{2} \\\\
@@ -446,11 +399,7 @@ class: left, top
 - You can write arbitrary R code in a code chunk (e.g. run a regression and produce a plot of the result). 
 - The code, the result of the code or both can be included into the final document. 
 - In the top curly braces, chunk options can be set to control how the output is handled.
-]
 
---
-
-.font90[
 Some useful options: 
   - `eval`(`TRUE`; logical): whether to evaluate the code chunk  
   - `echo`(`TRUE`; logical or numeric): whether to include R source code in the output file
@@ -458,19 +407,10 @@ Some useful options:
   - `warning` (`TRUE`; logical): whether to preserve warnings 
   - `message` (`TRUE`; logical): whether to preserve messages 
   - `include` (`TRUE`; logical): whether to include the chunk output in the final output document
-]
-
---
-
-.font90[
+  
 For a complete list, we refer to the `knitr` documentation: [Chunk options](https://yihui.name/knitr/options#code-evaluation).
-]
 
---
-
-.font90[
 - Press `Ctrl + Alt + I` to insert a new R code chunk.
-
 ]
 ---
 class: left, top
@@ -530,8 +470,6 @@ Tables can be created as follows:
 ```
 ]
 
---
-
 .pull-right[ 
 
 
@@ -542,10 +480,7 @@ Tables can be created as follows:
 |   1   |   1  |   1     |   1    | 
 
 ]
-&lt;br&gt;
-
---
-
+&lt;br&gt; &lt;br&gt;
 In general, however, tables should be produced by your code.
 The following slides show some examples. 
 
@@ -564,8 +499,6 @@ names(result) &lt;- c("Right", "Left", "Default", "Center")
 knitr::kable(result, align = c("r", "l", "l", "c"), format = "html")
 ```
 ````
-
---
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -603,23 +536,17 @@ class: left, top
 ## `kableExtra`
 
 - The appearance of a table (not only produced by `knitr::kable()`) depends on the underlying `css` (in case of an HTML document) or the generated `\(\LaTeX{}\)` code. 
-- The package `kableExtra` allows to format your `knitr::kable()` table without the use of `css` or `\(\LaTeX{}\)`
-
---
+- `kableExtra` allows to format your `knitr::kable()` table without the use of `css` or `\(\LaTeX{}\)`
 
 ````markdown
 ```{r}
 library(magrittr)
-library(kableExtra)
 knitr::kable(result, 
              align = c("r", "l", "l", "c"), 
              format = "html") %&gt;%  
   kableExtra::kable_styling(bootstrap_options = "bordered")
 ```
 ````
-
---
-
 - Have a look at the [kableExtra vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
 for examples. 
 
@@ -630,21 +557,16 @@ class: left, top
 - `xtable` provides more functionality than kable but is a bit more difficult to use.
 - If your code produces raw HTML or `\(\LaTeX{}\)` e.g. for a table then you have to set `results='asis'`  in the  chunk options, otherwise it gets formatted and will not work as intended.
 
---
-
 ````markdown
 ```{r, echo=FALSE, results='asis'}
 library(xtable)
-
 my_xtable &lt;- xtable(result, align = c("r", "r", "l", "l", "c"))
 print.xtable(my_xtable, type  = "html", include.rownames = FALSE)
 ```
 ````
 
---
-
 &lt;!-- html table generated in R 4.1.2 by xtable 1.8-4 package --&gt;
-&lt;!-- Wed Feb 02 00:10:55 2022 --&gt;
+&lt;!-- Wed Feb 02 00:18:20 2022 --&gt;
 &lt;table border=1&gt;
 &lt;tr&gt; &lt;th&gt; Right &lt;/th&gt; &lt;th&gt; Left &lt;/th&gt; &lt;th&gt; Default &lt;/th&gt; &lt;th&gt; Center &lt;/th&gt;  &lt;/tr&gt;
   &lt;tr&gt; &lt;td align="right"&gt; 12.00 &lt;/td&gt; &lt;td&gt; 12.00 &lt;/td&gt; &lt;td&gt; 12.00 &lt;/td&gt; &lt;td align="center"&gt; 12.00 &lt;/td&gt; &lt;/tr&gt;
@@ -662,7 +584,6 @@ class: left, top
 &lt;br&gt;
 ````markdown
 ```{r, results='asis', echo=TRUE}
-
 linear_model &lt;- lm(mpg ~ cyl + wt, 
       data = mtcars)
       
@@ -674,9 +595,6 @@ stargazer::stargazer(linear_model,
 ```
 ````
 ]
-
---
-
 .pull-right[
 &lt;br&gt; 
 .left[
@@ -709,9 +627,7 @@ hist(rnorm(1000))
 ```
 ````
 
---
-
-![](rmarkdown_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](try_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 class: left, top
@@ -723,15 +639,11 @@ class: left, top
 [This is a link to the R Markdown book](https://bookdown.org/yihui/rmarkdown/)
 ```
 
---
-
 - To include figures saved on your computer use
 
 ```markdown
 ![Figure Description](path/to/figure.png)
 ```
-
---
 
 - If you need more control over the appearence of the figure you can use
 
@@ -765,7 +677,6 @@ class: left, top
 - There are R packages producing interactive output e.g. `plotly` for interactive plots or
 `leaflet` for interactive maps. 
 
---
 
 ````markdown
 ```{r}
@@ -778,18 +689,14 @@ plot_ly(mtcars, x = ~wt, y = ~hp, z = ~qsec, color = ~am, colors = c('#BF382A', 
   layout(scene = list(xaxis = list(title = 'Weight'),
                      yaxis = list(title = 'Gross horsepower'),
                      zaxis = list(title = '1/4 mile time')))
-
 ```
 ````
 
 ---
 class: left, top
 ## Interactive documents
-
-<div id="htmlwidget-d8f295b1728d2ce31523" style="width:90%;height:70%;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d8f295b1728d2ce31523">{"x":{"visdat":{"177451503358":["function () ","plotlyVisDat"]},"cur_data":"177451503358","attrs":{"177451503358":{"x":{},"y":{},"z":{},"color":{},"colors":["#BF382A","#0C4B8E"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Weight"},"yaxis":{"title":"Gross horsepower"},"zaxis":{"title":"1/4 mile time"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.465,3.52,3.435,3.84,3.845],"y":[110,175,105,245,62,95,123,123,180,180,180,205,215,230,97,150,150,245,175],"z":[19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,20.01,16.87,17.3,15.41,17.05],"type":"scatter3d","mode":"markers","name":"Automatic","marker":{"color":"rgba(191,56,42,1)","line":{"color":"rgba(191,56,42,1)"}},"textfont":{"color":"rgba(191,56,42,1)"},"error_y":{"color":"rgba(191,56,42,1)"},"error_x":{"color":"rgba(191,56,42,1)"},"line":{"color":"rgba(191,56,42,1)"},"frame":null},{"x":[2.62,2.875,2.32,2.2,1.615,1.835,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"y":[110,110,93,66,52,65,66,91,113,264,175,335,109],"z":[16.46,17.02,18.61,19.47,18.52,19.9,18.9,16.7,16.9,14.5,15.5,14.6,18.6],"type":"scatter3d","mode":"markers","name":"Manual","marker":{"color":"rgba(12,75,142,1)","line":{"color":"rgba(12,75,142,1)"}},"textfont":{"color":"rgba(12,75,142,1)"},"error_y":{"color":"rgba(12,75,142,1)"},"error_x":{"color":"rgba(12,75,142,1)"},"line":{"color":"rgba(12,75,142,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-
---
+<div id="htmlwidget-dcc5ee010e820501402f" style="width:90%;height:70%;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dcc5ee010e820501402f">{"x":{"visdat":{"6042c293f6a":["function () ","plotlyVisDat"]},"cur_data":"6042c293f6a","attrs":{"6042c293f6a":{"x":{},"y":{},"z":{},"color":{},"colors":["#BF382A","#0C4B8E"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Weight"},"yaxis":{"title":"Gross horsepower"},"zaxis":{"title":"1/4 mile time"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.465,3.52,3.435,3.84,3.845],"y":[110,175,105,245,62,95,123,123,180,180,180,205,215,230,97,150,150,245,175],"z":[19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,20.01,16.87,17.3,15.41,17.05],"type":"scatter3d","mode":"markers","name":"Automatic","marker":{"color":"rgba(191,56,42,1)","line":{"color":"rgba(191,56,42,1)"}},"textfont":{"color":"rgba(191,56,42,1)"},"error_y":{"color":"rgba(191,56,42,1)"},"error_x":{"color":"rgba(191,56,42,1)"},"line":{"color":"rgba(191,56,42,1)"},"frame":null},{"x":[2.62,2.875,2.32,2.2,1.615,1.835,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"y":[110,110,93,66,52,65,66,91,113,264,175,335,109],"z":[16.46,17.02,18.61,19.47,18.52,19.9,18.9,16.7,16.9,14.5,15.5,14.6,18.6],"type":"scatter3d","mode":"markers","name":"Manual","marker":{"color":"rgba(12,75,142,1)","line":{"color":"rgba(12,75,142,1)"}},"textfont":{"color":"rgba(12,75,142,1)"},"error_y":{"color":"rgba(12,75,142,1)"},"error_x":{"color":"rgba(12,75,142,1)"},"line":{"color":"rgba(12,75,142,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 - For more examples see [plot.ly](https://plot.ly/r/).
 
@@ -809,16 +716,13 @@ leaflet() %&gt;% addTiles() %&gt;%
   )
 ```
 ````
-
---
-
 - Learn more at [Leaflet for R](https://rstudio.github.io/leaflet).
 ---
 class: left, top
 ## Interactive documents
 
-<div id="htmlwidget-5418faecc97853e34c5c" style="width:100%;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5418faecc97853e34c5c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[51.463675,7.00507,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,"Uni DUE",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[51.463675,7.00507],17,[]],"limits":{"lat":[51.463675,51.463675],"lng":[7.00507,7.00507]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-14188ca7e79d274767e2" style="width:100%;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-14188ca7e79d274767e2">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[51.463675,7.00507,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[51.463675,7.00507],17,[]],"limits":{"lat":[51.463675,51.463675],"lng":[7.00507,7.00507]}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -836,8 +740,8 @@ DT::datatable(
 ```
 ````
 
-<div id="htmlwidget-beec750ab73c5567ed6b" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-beec750ab73c5567ed6b">{"x":{"filter":"none","vertical":false,"fillContainer":true,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-43bbfd6aa30b71403c19" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-43bbfd6aa30b71403c19">{"x":{"filter":"none","vertical":false,"fillContainer":true,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display fill-container\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -847,14 +751,8 @@ class: left, top
 - You can define your own chunk options using hooks. This is a topic for you if you want to become 
 a professional `knitr` user. 
 
---
-
 #### Chunk Hooks 
-
-.font80[
 - A chunk hook is a function defining what should happen before or after a code chunk.
-]
-
 .code70[
 
 ```r
@@ -870,14 +768,10 @@ foo_hook = function(before, options, envir) {
 ```
 ]
 
---
-
-.font80[
 - Before the chunk is evaluated the function is called with `before == TRUE`  
 and after with `before == FALSE`.
 - `options` is a list with the current chunk options (optional). 
 - `envir` is the enviornment in which the the code chunk is evaluated (optional).
-]
 
 ---
 class: left, top
@@ -893,8 +787,6 @@ knitr::knit_hooks$set(small.mar = function(before) {
 })
 ```
 ````
---
-
 - `small.mar` now can be used as other chunk options. 
 
 ````markdown
@@ -952,9 +844,7 @@ class: left, top
 
 - `here::here()` is returning the path to the directory where your project file lives in. 
 
---
-
-**Why is this useful?** 
+Why is this useful? 
 
 - If an Rmarkdown file is compiled it sets the working directory to the folder where your `.rmd` file is stored.
 - Usually you do some interactive work before compiling. If you work in an project then the working directory 
@@ -962,19 +852,15 @@ class: left, top
 - If your project becomes more complex and you are using subdirectories the working directory set for compilation
   and interactive work are not necessary the same. This is quite annoying.
 
---
-
 #### Solution
 
 - use `here::here()` when setting a path.
-
-
-```r
-load(here::here("Data", "my_dataset.rda"))
-```
-
+    
+    ```r
+    load(here::here("Data", "my_dataset.rda"))
+    ```
 ---
-class: exercise_slide
+class: left, top
 ## Exercises
 
 1. Create an R Markdown document that is compiled to an HTML document. 
@@ -995,22 +881,17 @@ table `RMS_Crime_Incident_Field_Explanation`.
    installed. 
 
 ---
-class: exercise_slide
+class: left, top
 ## Exercises
 &lt;ol start="7"&gt; 
 &lt;li&gt;  Remember that nested ordered lists are not supported by Rmarkdown. Produce one nonetheless in your HTML and your PDF document. &lt;/li&gt;
 &lt;li&gt; Also build some slides using the code you have written. You are free to choose one among all available presentation formats. &lt;/li&gt;
 &lt;li&gt; Find out how to always use the current date in the YAML header.&lt;/li&gt;
 &lt;/ol&gt;
-
-
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="../assets/remark-zoom.js"></script>
-<script src="../xaringan_files/macros.js"></script>
 <script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -1103,50 +984,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-<script type="text/x-mathjax-config">
-  
-  function addCopyButtonToCode(){
-    // get all code elements
-    var allCodeBlocksElements = $( ".r" );
-    // For each element, do the following steps
-    allCodeBlocksElements.each(function(ii) {
-      // define a unique id for this element and add it
-      var currentId = "codeblock" + (ii + 1);
-      $(this).attr('id', currentId);
-      
-
-      // add the button just after the text in the code block w/ jquery
-      var clipButton = '<img src="../assets/clipboard-svgrepo-com.svg" width="20" alt="Copy to clipboard" onclick=copyToClipboard("#' + currentId + '") style="float:right;cursor:pointer;">';
-      $(this).prepend(clipButton);
-    });
-    
-  }
-
-$(document).ready(function () {
-  // Once the DOM is loaded for the page, attach clipboard buttons
-  addCopyButtonToCode();
-});
-
-
-function copyToClipboard(element) {
-  var $temp = $("<textarea>");
-  $("body").append($temp);
-  
-  let vars = '';
-  
-  $(element).children().each((i, v) => {
-      vars += $(v).text() + '\n'
-    })
-  
-  $temp.val(vars).select();
-  document.execCommand("copy");
-  $temp.remove();
-}
-
-</script>
-
-
-
 
 <script>
 slideshow._releaseMath = function(el) {

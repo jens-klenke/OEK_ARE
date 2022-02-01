@@ -4,7 +4,7 @@
     <title>Advanced R for Econometricians</title>
     <meta charset="utf-8" />
     <meta name="author" content="Martin C. Arnold" />
-    <meta name="date" content="2022-01-21" />
+    <meta name="date" content="2022-02-01" />
     <script src="Advanced_files/header-attrs/header-attrs.js"></script>
     <link href="Advanced_files/remark-css/default.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
@@ -259,11 +259,11 @@ ref(x, character = TRUE)
 ```
 
 ```
-## o [1:0x22a867b8] &lt;chr&gt; 
-## +-[2:0x13f09d70] &lt;string: "a"&gt; 
-## +-[2:0x13f09d70] 
-## +-[3:0x1dad78c8] &lt;string: "abc"&gt; 
-## \-[4:0x14101c10] &lt;string: "d"&gt;
+## o [1:0x22b06f90] &lt;chr&gt; 
+## +-[2:0x13f99cb0] &lt;string: "a"&gt; 
+## +-[2:0x13f99cb0] 
+## +-[3:0x1db48e98] &lt;string: "abc"&gt; 
+## \-[4:0x14191ae8] &lt;string: "d"&gt;
 ```
 ]]]
 
@@ -306,7 +306,7 @@ obj_addr(x)
 ```
 
 ```
-## [1] "0x22a32a18"
+## [1] "0x22ab3240"
 ```
 
 ```r
@@ -314,7 +314,7 @@ obj_addr(y)
 ```
 
 ```
-## [1] "0x22a5f690"
+## [1] "0x22adfeb8"
 ```
 ]]
 ]]]
@@ -490,15 +490,15 @@ ref(l1, l2)
 ```
 
 ```
-## o [1:0x22a11670] &lt;list&gt; 
-## +-[2:0x1d584598] &lt;dbl&gt; 
-## +-[3:0x1d584560] &lt;dbl&gt; 
-## \-[4:0x1d584528] &lt;dbl&gt; 
+## o [1:0x22a3e368] &lt;list&gt; 
+## +-[2:0x1d5f5b68] &lt;dbl&gt; 
+## +-[3:0x1d5f5b30] &lt;dbl&gt; 
+## \-[4:0x1d5f5af8] &lt;dbl&gt; 
 ##  
-## o [5:0x22909950] &lt;list&gt; 
-## +-[2:0x1d584598] 
-## +-[3:0x1d584560] 
-## \-[6:0x1d584448] &lt;dbl&gt;
+## o [5:0x12a5b900] &lt;list&gt; 
+## +-[2:0x1d5f5b68] 
+## +-[3:0x1d5f5b30] 
+## \-[6:0x1d5f5a18] &lt;dbl&gt;
 ```
 
 ]
@@ -823,15 +823,15 @@ lobstr::ref(x)
 .pull-right[
 
 ```
-## o [1:0x22c65930] &lt;list&gt; 
-## \-[2:0x1d9f4660] &lt;int&gt;
+## o [1:0x22ce5be8] &lt;list&gt; 
+## \-[2:0x1da65c30] &lt;int&gt;
 ```
 
 ```
-## o [1:0x22caad98] &lt;list&gt; 
-## +-[2:0x1d9f4660] &lt;int&gt; 
-## \-o [3:0x22c65930] &lt;list&gt; 
-##   \-[2:0x1d9f4660]
+## o [1:0x22d2b050] &lt;list&gt; 
+## +-[2:0x1da65c30] &lt;int&gt; 
+## \-o [3:0x22ce5be8] &lt;list&gt; 
+##   \-[2:0x1da65c30]
 ```
 ]]]
 
@@ -1051,9 +1051,9 @@ lobstr::ref(funs)
 ```
 
 ```
-## o [1:0x22a0c110] &lt;list&gt; 
-## +-[2:0x17161258] &lt;fn&gt; 
-## \-[3:0x17161300] &lt;fn&gt;
+## o [1:0x1ddfa870] &lt;list&gt; 
+## +-[2:0x12e4e640] &lt;fn&gt; 
+## \-[3:0x12e4e598] &lt;fn&gt;
 ```
 
 ```r
@@ -1715,7 +1715,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       
 
       // add the button just after the text in the code block w/ jquery
-      var clipButton = '<img src="../assets/clipboard-svgrepo-com.svg" width="16" alt="Copy to clipboard" onclick=copyToClipboard("#' + currentId + '") style="float:right;cursor:pointer;">';
+      var clipButton = '<img src="../assets/clipboard-svgrepo-com.svg" width="20" alt="Copy to clipboard" onclick=copyToClipboard("#' + currentId + '") style="float:right;cursor:pointer;">';
       $(this).prepend(clipButton);
     });
     
