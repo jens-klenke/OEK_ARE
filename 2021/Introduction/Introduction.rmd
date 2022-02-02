@@ -85,8 +85,8 @@ What do you know about R?
 
 - You will have to work on a final group project which focuses on one or more of the topics discussed in the course. 
 
-- The final grade is a weighted average of the grades for the group project (50%), its presentation (20%) and
-the assignments (30%).
+- The final grade is a weighted average of the grades for the group project (60%), its presentation (20%) and
+the assignments (20%).
 
 - You have to pass each part (assignments, project and presentation) separately to pass the course. 
 ---
