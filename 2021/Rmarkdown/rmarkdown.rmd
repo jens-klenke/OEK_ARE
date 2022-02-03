@@ -22,6 +22,13 @@ output:
       navigation:
         scroll: false # disable slide transitions by scrolling
 ---
+```{r moon_reader, include=FALSE, eval = FALSE}
+# setup for moon reader
+# copy it to console
+options(servr.interval = 0.5)
+xaringan::inf_mr()
+```
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
@@ -714,8 +721,6 @@ plot_ly(mtcars, x = ~wt, y = ~hp, z = ~qsec, color = ~am, colors = c('#BF382A', 
                      zaxis = list(title = '1/4 mile time')))
 ```
 
---
-
 - For more examples see [plot.ly](https://plot.ly/r/).
 
 ---
@@ -734,8 +739,6 @@ leaflet() %>% addTiles() %>%
   )
 ```
 ````
-
---
 
 - Learn more at [Leaflet for R](https://rstudio.github.io/leaflet).
 ---
@@ -756,16 +759,24 @@ leaflet() %>% addTiles() %>%
 class: left, top
 ## Interactive documents
 
+.code80[
+
 - The `DT` package also allows us to include interactive tables. 
+
+
 
 ````markdown
 `r ''````{r}
-DT::datatable(
-  head(iris, 10),
-  fillContainer = FALSE, options = list(pageLength = 8)
-)
+DT::datatable( head(iris, 10),
+  fillContainer = TRUE,  options = list(pageLength = 5))
 ```
 ````
+
+]
+
+--
+
+.font80[
 
 ```{r}
 DT::datatable(
@@ -774,6 +785,7 @@ DT::datatable(
 )
 ```
 
+]
 
 ---
 class: left, top
