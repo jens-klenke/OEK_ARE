@@ -57,7 +57,8 @@ a, a > code {
 /* to ensure that code font color is preserved in blockquote envorinments and child divs do not overflow */
 .exercise {
   overflow: hidden;
-  margin-top: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   color: black;
 }
 

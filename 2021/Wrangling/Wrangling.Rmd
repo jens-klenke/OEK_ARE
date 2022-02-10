@@ -1,6 +1,6 @@
 ---
 title: "Advanced R for Econometricians"
-subtitle: "Introduction"
+subtitle: "Data Wrangling"
 author: 
   - "Martin C. Arnold"
   - "Jens Klenke"
@@ -45,24 +45,42 @@ class: top, left
 ## Tibble
 
 .font90[
-- Tibbles are the main data structure used in the `tidyverse` and can be viewed as a modern version of the data frame. 
+Tibbles are the main data structure used in the `tidyverse` and can be viewed as a modern version of the data frame. 
 
 - `tibble()` creates a new tibble from scratch.
-    ```{r, echo = TRUE, eval = TRUE}
+]
+
+
+.blockquote.exercise.font90[
+```{r, echo = TRUE, eval = TRUE}
     library(tidyverse)
     new_tibble <- tibble(x = 1:3, y = letters[1:3])
-    ```
+```
+]
 
+--
+
+.font90[
 - `as_tibble()` creates a tibble from an existing object (e.g. a data frame or a matrix).
-    ```{r, echo = TRUE, eval = TRUE}
+]
+
+.blockquote.exercise.font90[
+```{r, echo = TRUE, eval = TRUE}
     a_data.frame <- data.frame(x = 1:3, y = letters[1:3])
     a_tibble     <- as_tibble(a_data.frame)
-    ```
+```
+]
 
+--
+
+
+.font90[
 - Everything that works for data frames also works with tibbles because
-    ```{r, echo = TRUE, eval = TRUE}
+]
+.blockquote.exercise.font90[
+```{r, echo = TRUE, eval = TRUE}
     class(a_tibble)
-    ```
+```
 ]
 
 ---
@@ -70,29 +88,41 @@ class: top, left
 
 ## Tibble vs. data.frame
 - Why should we use tibbles instead of data frames? See the following comparison.  
-    ```{r, echo = TRUE}
+
+.blockquote.exercise.font90[
+```{r, echo = TRUE}
 data(mtcars) 
 mtcars_tibble <- as_tibble(mtcars)
-    ```
+```
+]
+
+--
 
 - different print method
-    ```{r, echo = TRUE, eval = FALSE}
-    print(mtcars)
-    print(mtcars_tibble)
-    ```
+
+.blockquote.exercise.font90[
+```{r, echo = TRUE, eval = FALSE}
+print(mtcars)
+print(mtcars_tibble)
+```
+]
+
+--
 
 - more consistent subsetting behavior
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise.font90[
+```{r, echo = TRUE, eval = FALSE}
 mtcars[ ,1:2] # returns a data.frame
 mtcars[ ,1]   # returns a vector 
 mtcars_tibble[ ,1:2] # returns a tibble
 mtcars_tibble[ ,1]   # returns a tibble
-    ```
-
+```
+]
 ---
 ## Tibble vs. data.frame
 
-.font80[.code80[
+
 - lazy and sequential evaluation 
 
 .blockquote.exercise[
@@ -102,25 +132,32 @@ tibble(x = 1:3, y = x^2)
 ```
 ]
 
-- does not change input types (not up to date)
+--
+
+- higher flexibility with nested data
 
 .blockquote.exercise[
-```{r, echo = TRUE, results='hold'}
-text <- letters[1:3]
-class(text)
-df   <- data.frame(text) # stringsAsFactors = TRUE is the default 
-class(df$text)
-tib  <- tibble(text)
-class(tib$text)
+```{r, echo = TRUE, eval = FALSE}
+data_df  <- data.frame(days = 1:3,
+                       data = list(mtcars)) # not working
+
+data_tib  <- tibble(days = 1:3, 
+                    data = list(mtcars))
 ```
 ]
 
 - For more see `vignette("tibble")`.
-]]
+
 
 ---
 class: top, left
+background-image: url(../assets/dplyr.svg)
+background-size: 150px
+background-position: 97.5% 8%
+
 ## dplyr 
+
+<br>
 
 The `dplyr` package is the most important package of the `tidyverse` when it comes to data manipulation and transformation. 
 
@@ -140,204 +177,350 @@ class: top, left
 First, we look at functions that work on a single table. 
  
 - `filter()` to select rows based on their values.
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
 filter(mtcars_tibble, hp >= 100 & mpg >= 20)
-    ```
+```
+]
+
+--
 
 - `slice()` to select rows by position. 
-    ```{r, eval = FALSE, echo = TRUE}
+
+.blockquote.exercise[
+```{r, eval = FALSE, echo = TRUE}
 slice(mtcars_tibble, 10:15)
-    ```
+```
+]
+
+--
+
 - `select()`/`rename()` to select/rename variables based on their names.
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
 select(mtcars_tibble, cyl, hp)
-    ```
+```
+]
 
 ---
 class: top, left
 ## Single Table Functions
 
 - `arrange()` to reorder rows.
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
 arrange(mtcars_tibble, cyl)
 arrange(mtcars_tibble, desc(cyl))
-    ```
+```
+]
+
+--
 
 - `relocate()` to reorder columns (variables).
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
 relocate(mtcars_tibble, gear)
 relocate(mtcars_tibble, gear, .after = last_col())
 relocate(mtcars_tibble, gear, .before = mpg)
-    ```
-
-
-- `mutate()` and `transmute()` to add new variables that are functions of existing variables. 
-    ```{r, echo = TRUE, eval = FALSE}
-    mutate(mtcars_tibble, gpm = 1/mpg)
-    transmute(mtcars_tibble, gpm = 1/mpg) 
-    ```
-
-- `summarise()` to condense multiple values to a single value.
-    ```{r, echo = TRUE, eval = FALSE}
-    summarise(mtcars_tibble, mean_hp = mean(hp), max_mpg = max(mpg))
-    ```
+```
+]
 
 
 ---
 class: top, left
 ## Single Table Functions
+
+- `mutate()` and `transmute()` to add new variables that are functions of existing variables. 
+
+.blockquote.exercise[
+
+```{r, echo = TRUE, eval = FALSE}
+    mutate(mtcars_tibble, gpm = 1/mpg)
+    transmute(mtcars_tibble, gpm = 1/mpg) 
+```
+]
+
+--
+
+- `summarise()` to condense multiple values to a single value.
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
+    summarise(mtcars_tibble, mean_hp = mean(hp), max_mpg = max(mpg))
+```
+]
+
+---
+class: top, left
+## Single Table Functions
+
 - `sample_n()` and `sample_frac()` to take random samples.
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
     sample_n(mtcars_tibble, 10)
     sample_frac(mtcars_tibble, 0.1)
-    ```
+```
+]
+
+--
 
 - `distinct()` removes duplicate rows.
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
     tibble_with_duplicates    <- tibble(x = c(1,1,2,3), 
                                         y = c(4,4,5,6))
     tibble_without_duplicates <- distinct(tibble_with_duplicates)
-    ```
+```
+]
+
+--
 
 - `count()` and `tally()` count rows.  
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
     count(mtcars_tibble); count(mtcars_tibble, cyl)
     tally(mtcars_tibble); tally(mtcars_tibble, cyl)
-    ```
-
+```
+]
 
 ---
 class: top, left
 
 ## Filter 
 
+.font80[
 The function `filter()` selects rows based on their values. 
 
 - Use comparison operators `==`, `>`, `>=`, `<`, `<=`, and `!=` to filter rows based on a condition. 
-    ```{r, echo = TRUE, eval = FALSE}
-filter(mtcars_tibble, hp == 100)
-    ```
 
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
+filter(mtcars_tibble, hp == 100)
+```
+]]
+
+--
+
+.font80[
 - Use logical operators such as  `&` and `|` to combine multiple conditions. 
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
 filter(mtcars_tibble, hp > 100 & cyl == 4)
 filter(mtcars_tibble, hp > 100 | cyl == 4)
-    ```
+```
+]]
 
----
+--
+
+.font80[
 - Additional arguments to `filter()` are combined with `&` which is the same as the above. 
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
 filter(mtcars_tibble, hp > 100, cyl == 4)
 ```
+]]
 
+--
+
+.font80[
 - For the common operation `x >= left & x <= right` there is the shorthand `between(x, left, right)`.
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
 filter(mtcars_tibble, x >= 90 & x <= 110)
-filter(mtcars_tibble, between(hp, 90, 110)
-    ```
+filter(mtcars_tibble, between(hp, 90, 110))
+```
+]]
 
 ---
 ## Select
 
+.font90[
 The function `select()` selects columns based on their name. 
 
 - The function can handle standard and non-standard evaluation (more about this later). 
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
   select(mtcars_tibble, disp, vs) 
   select(mtcars_tibble, "disp", "vs") 
-    ```
+```
+]]
 
+--
+
+.font90[
 - You can also work with character vectors. 
-    ```{r, echo = TRUE, eval = FALSE}
-  select(mtcars_tibble, c("disp", "vs"))
-    ```
 
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
+  select(mtcars_tibble, c("disp", "vs"))
+```
+]]
+
+--
+
+.font90[
 - Use `-` to select all except the provided columns.
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
   select(mtcars_tibble, -disp, -vs) 
   select(mtcars_tibble, -c("disp", "vs")) 
-    ```
+```
+]
 
 - There is a whole bunch of helper functions for `select()` on the next slides. 
+]
 
 ---
 class: top, left
 
 ## Helper Functions for `select()`
 
+.font90[
 - Select columns whose name contains a character string.
-    ```{r, echo=TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
 select(iris, contains("."))
-    ```
+```
+]]
 
+--
+
+.font90[
 - Select columns whose name ends with a character string.
-    ```{r, echo=TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
 select(iris, ends_with("Length"))
-    ```
+```
+]]
 
+--
+
+.font90[
 - Select columns whose name matches a regular expression.
-    ```{r, echo=TRUE, eval = FALSE}
-select(iris, matches(".t."))
-    ```
 
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
+select(iris, matches(".t."))
+```
+]]
+
+--
+
+.font90[
 - Select columns named `x1`, `x2`, `x3`, `x4`, `x5`.
-    ```{r, echo=TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
 select(iris, num_range("x", 1:5))
-    ```
+```
+]]
 
 ---
 class: top, left
 ## Helper Functions for `select()`
 
+.font90[
 - Select all columns from `Sepal.Width` to `Petal.Width`.
-    ```{r, echo=TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
 select(iris, Sepal.Width:Petal.Width)
-    ```
+```
+]]
 
+--
+
+.font90[
 - Select columns whose names are in a group of names.
-    ```{r, echo=TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
 select(iris, one_of(c("Species", "Genus")))
-    ```
+```
+]]
 
+--
+
+.font90[
 - Select columns whose name starts with a character string.
-    ```{r, echo=TRUE, eval = FALSE}
-select(iris, starts_with("Sepal"))
-    ```
 
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
+select(iris, starts_with("Sepal"))
+```
+]]
 ---
 ## Mutate
 
+.font90[
 The function `mutate()` adds new columns or replaces old columns based on existing columns. 
+
+.blockquote.exercise[
 ```{r, echo=TRUE, eval = FALSE}
 mutate(mtcars_tibble,
        gpm = 1/mpg,
        disp =  disp - mean(disp) # replaces disp 
        )
 ```
+]]
 
-- Use `lag()` and `lead()` to access values that are not in the same row (e.g. for time series data). 
-    ```{r, echo=TRUE, eval = FALSE}
+--
+
+.font90[
+- Use `lag()` and `lead()` to access values that are not in the same row (e.g. for time series data).
+
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
     rw <- tibble(t = 1:10, y = cumsum(rnorm(10)))
     mutate(rw, increments =  y - lag(y, k = 1))
-    ```
+```
+]]
 
+--
+
+.font90[
 - Use `min_rank()` to add a column with the rank (`?min_rank()` gives you an overview of further ranking functions).
-    ```{r, echo=TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo=TRUE, eval = FALSE}
     mutate(mtcars_tibble,
            hp_rank_smallest_first = min_rank(hp),
            hp_rank_largest_first  = min_rank(desc(hp))
        )
-    ```
+```
+]]
 
 ---
 ## Summarise
+
+.font90[
 
 `summarise()` can be used to collapse columns to a single row used with e.g.: 
 - base R functions such as `mean()`, `sd()`, `max()`
 - dplyr specific functions for
   - position `first()`, `nth()`, `last()`
   - counts `n()`, `n_disticnt()`
-  
+
+]
+
+--
+
+.blockquote.exercise[.font90[
+
 ```{r, echo = TRUE, eval = FALSE}
 summarise(mtcars_tibble,
           mean_hp    = mean(hp),
@@ -346,12 +529,22 @@ summarise(mtcars_tibble,
           third_cyl  = nth(cyl, 3) 
           )
 ```
+]]
+
+--
+
+.font90[
 
 - functions you have written yourself 
-    ```{r, echo = TRUE, eval = FALSE}
+
+.blockquote.exercise[
+```{r, echo = TRUE, eval = FALSE}
 my_variance <- function(x) 1/(n()-1) * sum((x - mean(x))^2)
 summarise(by_cyl, my_variance(mpg))
-    ```
+```
+
+]]
+
 ---
 ## Summarise
 
