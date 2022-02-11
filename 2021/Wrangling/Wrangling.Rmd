@@ -33,6 +33,13 @@ xaringan::inf_mr()
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+
+library(icons)
+
+# pre-define icons
+desktop <- icon_style(icons::fontawesome$solid$desktop, fill = "#004c93")
+checker_green <- icons::icon_style(fontawesome$solid$check, fill = "green")
+times_red <- icons::icon_style(fontawesome$solid$times, fill = "red")
 ```
 class: title-slide title-wrangling center middle
 
@@ -239,8 +246,8 @@ class: top, left
 .blockquote.exercise[
 
 ```{r, echo = TRUE, eval = FALSE}
-    mutate(mtcars_tibble, gpm = 1/mpg)
-    transmute(mtcars_tibble, gpm = 1/mpg) 
+ mutate(mtcars_tibble, gpm = 1/mpg)
+transmute(mtcars_tibble, gpm = 1/mpg) 
 ```
 ]
 
@@ -250,7 +257,7 @@ class: top, left
 
 .blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
-    summarise(mtcars_tibble, mean_hp = mean(hp), max_mpg = max(mpg))
+summarise(mtcars_tibble, mean_hp = mean(hp), max_mpg = max(mpg))
 ```
 ]
 
@@ -262,8 +269,8 @@ class: top, left
 
 .blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
-    sample_n(mtcars_tibble, 10)
-    sample_frac(mtcars_tibble, 0.1)
+sample_n(mtcars_tibble, 10)
+sample_frac(mtcars_tibble, 0.1)
 ```
 ]
 
@@ -549,24 +556,32 @@ summarise(by_cyl, my_variance(mpg))
 ## Summarise
 
 - You cannot use `summarise()` with functions that return more than one value per group. 
-    ```{r, eval = FALSE, echo = TRUE}
+
+.blockquote.exercise[
+```{r, eval = FALSE, echo = TRUE}
 two_return_vaules <- function(x) c(mean(x), sd(x))
 summarise(by_cyl, two_return_vaules(mpg))
-    ```
+```
+]
 
-- the function can take multiple variable or fixed inputs.
+--
+
+- The function can take multiple variable or fixed inputs.
+
+.blockquote.exercise[
     ```{r, echo = TRUE, eval = FALSE}
 two_input_values <- function(x, y) sum(x + y)
 summarise(by_cyl, two_input_values(hp, qsec)) # variable inputs
 summarise(by_cyl, two_input_values(hp, 1))    # fixed input
     ```
+]
 
 ---
-class: top, left
+class: exercise_slide
 ## Exercises
 
 <ol start="1"> 
-<li>  Load the `nycflights13::flights` data set. Does it come formatted as a tibble? </li>
+<li>  Load the <code>nycflights13::flights</code> data set. Does it come formatted as a tibble? </li>
 <li>  Find all flights that </li>
   <ul>
       <li> Had an arrival delay of two or more hours.</li>
@@ -575,8 +590,8 @@ class: top, left
       <li> Departed between midnight and 6am.</li>
     </ul>
 <li> Which flights took the longest and which the shortest? </li>
-<li>  Brainstorm as many ways as possible to select `dep\text{_}time`, `dep\text{_}d elay`, `arr\text{_}time`, and `arr\text{_}d elay`. </li>
-<li>  Create a new variable `first\text{_}flight` which takes the value `TRUE` if it is the first flight of the day. </li>
+<li>  Brainstorm as many ways as possible to select <code>dep_time</code>, <code>dep_delay</code>, <code>arr_time</code>, and <code>arr_delay</code>. </li>
+<li>  Create a new variable <code>first_flight</code> which takes the value <code>TRUE</code> if it is the first flight of the day. </li>
 </ol>
 
 ```{r, echo=FALSE, eval = FALSE}
@@ -595,10 +610,16 @@ class: top, left
 
 To exploit the full potential of `summarise()` we pair it with `group_by()`. 
 
+--
+
+.blockquote.exercise[
 ```{r, echo = TRUE, results='markup'}
 by_cyl <- group_by(mtcars_tibble, cyl)
 print(summarise(by_cyl, mean(mpg)))
 ```
+]
+
+--
 
 Use `ungroup()` to remove the grouping, when you want to work on the whole data set again. 
 
@@ -607,6 +628,11 @@ class: top, left
 ## Grouping
 
 It is also possible to use `group_by()` together with a lot of other single table operations.
+
+--
+ 
+.blockquote.exercise[
+#### `r desktop` Example
 
 ```{r, echo = TRUE, eval = FALSE}
 by_cyl <- group_by(mtcars_tibble, cyl)
@@ -627,14 +653,21 @@ filter(by_cyl, n() > 10)
 # sorts one group after the other
 arrange(by_cyl, disp, .by_group = TRUE)                        
 ```
+]
+
 ---
 class: top, left
 ## The Pipe
 
 Usually, we combine multiple operations, e.g. first we filter, then we mutate, group and finally summarise. 
 
+--
+
 We could do it like this: 
 
+.blockquote.exercise[ 
+
+#### `r times_red` Bad
 ```{r, echo = TRUE}
 filtered   <- filter(mtcars_tibble, cyl <= 8)
 mutated    <- mutate(filtered, gpm = 1/mpg)
@@ -643,30 +676,46 @@ summarized <- summarise(grouped, count = n(),
                         mean_hp = mean(hp),
                         mean_gpm = mean(gpm)) 
 ```
+]
+
+--
+
+<br>
 
 This code has the disadvantage that we need to save intermediate results that we do not care about. 
+
 ---
 class: top, left
 ## The Pipe
 
 We could nest all those functions to get rid of the intermediate result.
 
+.blockquote.exercise[ 
 ```{r, echo = TRUE}
 summarise(group_by(mutate(filter(mtcars_tibble, cyl <= 8), gpm = 1/mpg)), 
           count = n(), 
           mean_hp = mean(hp),
           mean_gpm = mean(gpm))
 ```
+]
 
+--
+
+<br>
 However, readability gets worse and debugging will become much harder. 
 ---
 class: top, left
 ## The Pipe
 
+.font90[
 That is where the pipe operator `%>%` from the `magrittr` package comes in handy.
-The value on the left side of the operator becomes the input to the function on the right side. 
+The value on the left side of the operator becomes the input to the function on the right side. ]
 
-```{r, echo = TRUE}
+--
+
+.blockquote.exercise.font90[ 
+
+```{r, echo = TRUE, eval = FALSE}
 mtcars_tibble %>% 
   mutate(gpm = 1/mpg) %>%
   group_by(gear) %>% 
@@ -675,12 +724,52 @@ mtcars_tibble %>%
             mean_gpm = mean(gpm)) 
   
 ```
+]
 
+--
+
+.font90[
 The pipe operator is not limited to `dplyr` or the `tidyverse`
 
+.blockquote.exercise[ 
 ```{r, echo = TRUE, eval = FALSE}
 1:6 %>% mean
 ```
+]]
+
+--
+
+.font90[
+Different pipe operator for more flexbility. 
+
+- `%<>%` combines the pipe and `<-`
+- `%T>%`to do something on the side
+- `%$%` collapse the `data.frame` class
+]
+
+???
+
+Examnples:
+
+#### overvwriting object
+cars %<>%
+  dplyr::summarise(mean(hp))
+
+
+
+#### by side plotting
+cars_1 <- cars %>%
+  dplyr::select(hp, mpg) %T>%
+  plot %>%
+  dplyr::summarise(mean(hp))
+
+
+#### select from data.frame
+cars %>%
+  dplyr::select(hp, mpg) %$%
+  cor(hp, mpg)
+
+  
 
 
 ```{r, eval = FALSE, cache=TRUE}

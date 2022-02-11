@@ -899,6 +899,8 @@ mtcars[mtcars$cyl == 4 | 6, ]
 </ol>
 
 ---
+class: exercise_slide
+
 ## `r desktop` Exercises
 
 <ol start = "5" >
@@ -924,6 +926,8 @@ print(count)
 ```
 
 ---
+class: exercise_slide
+
 ## `r desktop` Exercises
 
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content="Martin C. Arnold" />
     <meta name="author" content="Jens Klenke" />
-    <meta name="date" content="2022-02-10" />
+    <meta name="date" content="2022-02-11" />
     <script src="Wrangling_files/header-attrs/header-attrs.js"></script>
     <link href="Wrangling_files/remark-css/default.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
@@ -255,8 +255,8 @@ class: top, left
 
 
 ```r
-    mutate(mtcars_tibble, gpm = 1/mpg)
-    transmute(mtcars_tibble, gpm = 1/mpg) 
+ mutate(mtcars_tibble, gpm = 1/mpg)
+transmute(mtcars_tibble, gpm = 1/mpg) 
 ```
 ]
 
@@ -267,7 +267,7 @@ class: top, left
 .blockquote.exercise[
 
 ```r
-    summarise(mtcars_tibble, mean_hp = mean(hp), max_mpg = max(mpg))
+summarise(mtcars_tibble, mean_hp = mean(hp), max_mpg = max(mpg))
 ```
 ]
 
@@ -280,8 +280,8 @@ class: top, left
 .blockquote.exercise[
 
 ```r
-    sample_n(mtcars_tibble, 10)
-    sample_frac(mtcars_tibble, 0.1)
+sample_n(mtcars_tibble, 10)
+sample_frac(mtcars_tibble, 0.1)
 ```
 ]
 
@@ -588,26 +588,34 @@ summarise(by_cyl, my_variance(mpg))
 ## Summarise
 
 - You cannot use `summarise()` with functions that return more than one value per group. 
-    
-    ```r
-    two_return_vaules &lt;- function(x) c(mean(x), sd(x))
-    summarise(by_cyl, two_return_vaules(mpg))
-    ```
 
-- the function can take multiple variable or fixed inputs.
+.blockquote.exercise[
+
+```r
+two_return_vaules &lt;- function(x) c(mean(x), sd(x))
+summarise(by_cyl, two_return_vaules(mpg))
+```
+]
+
+--
+
+- The function can take multiple variable or fixed inputs.
+
+.blockquote.exercise[
     
     ```r
     two_input_values &lt;- function(x, y) sum(x + y)
     summarise(by_cyl, two_input_values(hp, qsec)) # variable inputs
     summarise(by_cyl, two_input_values(hp, 1))    # fixed input
     ```
+]
 
 ---
-class: top, left
+class: exercise_slide
 ## Exercises
 
 &lt;ol start="1"&gt; 
-&lt;li&gt;  Load the `nycflights13::flights` data set. Does it come formatted as a tibble? &lt;/li&gt;
+&lt;li&gt;  Load the &lt;code&gt;nycflights13::flights&lt;/code&gt; data set. Does it come formatted as a tibble? &lt;/li&gt;
 &lt;li&gt;  Find all flights that &lt;/li&gt;
   &lt;ul&gt;
       &lt;li&gt; Had an arrival delay of two or more hours.&lt;/li&gt;
@@ -616,8 +624,8 @@ class: top, left
       &lt;li&gt; Departed between midnight and 6am.&lt;/li&gt;
     &lt;/ul&gt;
 &lt;li&gt; Which flights took the longest and which the shortest? &lt;/li&gt;
-&lt;li&gt;  Brainstorm as many ways as possible to select `dep\text{_}time`, `dep\text{_}d elay`, `arr\text{_}time`, and `arr\text{_}d elay`. &lt;/li&gt;
-&lt;li&gt;  Create a new variable `first\text{_}flight` which takes the value `TRUE` if it is the first flight of the day. &lt;/li&gt;
+&lt;li&gt;  Brainstorm as many ways as possible to select &lt;code&gt;dep_time&lt;/code&gt;, &lt;code&gt;dep_delay&lt;/code&gt;, &lt;code&gt;arr_time&lt;/code&gt;, and &lt;code&gt;arr_delay&lt;/code&gt;. &lt;/li&gt;
+&lt;li&gt;  Create a new variable &lt;code&gt;first_flight&lt;/code&gt; which takes the value &lt;code&gt;TRUE&lt;/code&gt; if it is the first flight of the day. &lt;/li&gt;
 &lt;/ol&gt;
 
 
@@ -630,6 +638,9 @@ class: top, left
 
 To exploit the full potential of `summarise()` we pair it with `group_by()`. 
 
+--
+
+.blockquote.exercise[
 
 ```r
 by_cyl &lt;- group_by(mtcars_tibble, cyl)
@@ -644,6 +655,9 @@ print(summarise(by_cyl, mean(mpg)))
 ## 2     6        19.7
 ## 3     8        15.1
 ```
+]
+
+--
 
 Use `ungroup()` to remove the grouping, when you want to work on the whole data set again. 
 
@@ -652,6 +666,11 @@ class: top, left
 ## Grouping
 
 It is also possible to use `group_by()` together with a lot of other single table operations.
+
+--
+ 
+.blockquote.exercise[
+#### &lt;svg viewBox="0 0 576 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#004c93;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"&gt;&lt;/path&gt;&lt;/svg&gt; Example
 
 
 ```r
@@ -673,14 +692,21 @@ filter(by_cyl, n() &gt; 10)
 # sorts one group after the other
 arrange(by_cyl, disp, .by_group = TRUE)                        
 ```
+]
+
 ---
 class: top, left
 ## The Pipe
 
 Usually, we combine multiple operations, e.g. first we filter, then we mutate, group and finally summarise. 
 
+--
+
 We could do it like this: 
 
+.blockquote.exercise[ 
+
+#### &lt;svg viewBox="0 0 352 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:red;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"&gt;&lt;/path&gt;&lt;/svg&gt; Bad
 
 ```r
 filtered   &lt;- filter(mtcars_tibble, cyl &lt;= 8)
@@ -690,14 +716,21 @@ summarized &lt;- summarise(grouped, count = n(),
                         mean_hp = mean(hp),
                         mean_gpm = mean(gpm)) 
 ```
+]
+
+--
+
+&lt;br&gt;
 
 This code has the disadvantage that we need to save intermediate results that we do not care about. 
+
 ---
 class: top, left
 ## The Pipe
 
 We could nest all those functions to get rid of the intermediate result.
 
+.blockquote.exercise[ 
 
 ```r
 summarise(group_by(mutate(filter(mtcars_tibble, cyl &lt;= 8), gpm = 1/mpg)), 
@@ -712,14 +745,23 @@ summarise(group_by(mutate(filter(mtcars_tibble, cyl &lt;= 8), gpm = 1/mpg)),
 ##   &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;
 ## 1    32    147.   0.0542
 ```
+]
 
+--
+
+&lt;br&gt;
 However, readability gets worse and debugging will become much harder. 
 ---
 class: top, left
 ## The Pipe
 
+.font90[
 That is where the pipe operator `%&gt;%` from the `magrittr` package comes in handy.
-The value on the left side of the operator becomes the input to the function on the right side. 
+The value on the left side of the operator becomes the input to the function on the right side. ]
+
+--
+
+.blockquote.exercise.font90[ 
 
 
 ```r
@@ -730,22 +772,53 @@ mtcars_tibble %&gt;%
             mean_hp = mean(hp),
             mean_gpm = mean(gpm)) 
 ```
+]
 
-```
-## # A tibble: 3 x 4
-##    gear count mean_hp mean_gpm
-##   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-## 1     3    15   176.    0.0650
-## 2     4    12    89.5   0.0424
-## 3     5     5   196.    0.0504
-```
+--
 
+.font90[
 The pipe operator is not limited to `dplyr` or the `tidyverse`
 
+.blockquote.exercise[ 
 
 ```r
 1:6 %&gt;% mean
 ```
+]]
+
+--
+
+.font90[
+Different pipe operator for more flexbility. 
+
+- `%&lt;&gt;%` combines the pipe and `&lt;-`
+- `%T&gt;%`to do something on the side
+- `%$%` collapse the `data.frame` class
+]
+
+???
+
+Examnples:
+
+#### overvwriting object
+cars %&lt;&gt;%
+  dplyr::summarise(mean(hp))
+
+
+
+#### by side plotting
+cars_1 &lt;- cars %&gt;%
+  dplyr::select(hp, mpg) %T&gt;%
+  plot %&gt;%
+  dplyr::summarise(mean(hp))
+
+
+#### select from data.frame
+cars %&gt;%
+  dplyr::select(hp, mpg) %$%
+  cor(hp, mpg)
+
+  
 
 
 
