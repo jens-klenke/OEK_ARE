@@ -246,7 +246,7 @@ class: top, left
 .blockquote.exercise[
 
 ```{r, echo = TRUE, eval = FALSE}
- mutate(mtcars_tibble, gpm = 1/mpg)
+mutate(mtcars_tibble, gpm = 1/mpg)
 transmute(mtcars_tibble, gpm = 1/mpg) 
 ```
 ]
@@ -280,9 +280,9 @@ sample_frac(mtcars_tibble, 0.1)
 
 .blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
-    tibble_with_duplicates    <- tibble(x = c(1,1,2,3), 
-                                        y = c(4,4,5,6))
-    tibble_without_duplicates <- distinct(tibble_with_duplicates)
+tibble_with_duplicates    <- tibble(x = c(1,1,2,3), 
+                                    y = c(4,4,5,6))
+tibble_without_duplicates <- distinct(tibble_with_duplicates)
 ```
 ]
 
@@ -292,8 +292,8 @@ sample_frac(mtcars_tibble, 0.1)
 
 .blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
-    count(mtcars_tibble); count(mtcars_tibble, cyl)
-    tally(mtcars_tibble); tally(mtcars_tibble, cyl)
+count(mtcars_tibble); count(mtcars_tibble, cyl)
+tally(mtcars_tibble); tally(mtcars_tibble, cyl)
 ```
 ]
 
@@ -358,8 +358,8 @@ The function `select()` selects columns based on their name.
 
 .blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
-  select(mtcars_tibble, disp, vs) 
-  select(mtcars_tibble, "disp", "vs") 
+select(mtcars_tibble, disp, vs) 
+select(mtcars_tibble, "disp", "vs") 
 ```
 ]]
 
@@ -370,7 +370,7 @@ The function `select()` selects columns based on their name.
 
 .blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
-  select(mtcars_tibble, c("disp", "vs"))
+select(mtcars_tibble, c("disp", "vs"))
 ```
 ]]
 
@@ -381,8 +381,8 @@ The function `select()` selects columns based on their name.
 
 .blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
-  select(mtcars_tibble, -disp, -vs) 
-  select(mtcars_tibble, -c("disp", "vs")) 
+select(mtcars_tibble, -disp, -vs) 
+select(mtcars_tibble, -c("disp", "vs")) 
 ```
 ]
 
@@ -492,8 +492,8 @@ mutate(mtcars_tibble,
 
 .blockquote.exercise[
 ```{r, echo=TRUE, eval = FALSE}
-    rw <- tibble(t = 1:10, y = cumsum(rnorm(10)))
-    mutate(rw, increments =  y - lag(y, k = 1))
+rw <- tibble(t = 1:10, y = cumsum(rnorm(10)))
+mutate(rw, increments =  y - lag(y, k = 1))
 ```
 ]]
 
@@ -504,10 +504,10 @@ mutate(mtcars_tibble,
 
 .blockquote.exercise[
 ```{r, echo=TRUE, eval = FALSE}
-    mutate(mtcars_tibble,
-           hp_rank_smallest_first = min_rank(hp),
-           hp_rank_largest_first  = min_rank(desc(hp))
-       )
+mutate(mtcars_tibble,
+       hp_rank_smallest_first = min_rank(hp),
+       hp_rank_largest_first  = min_rank(desc(hp))
+  )
 ```
 ]]
 
@@ -598,8 +598,6 @@ class: exercise_slide
 library(tidyverse)
 library(nycflights13)
 filter(flights, day == 1)
-
-
 ```
 
 
@@ -620,6 +618,8 @@ print(summarise(by_cyl, mean(mpg)))
 ]
 
 --
+
+<br>
 
 Use `ungroup()` to remove the grouping, when you want to work on the whole data set again. 
 
@@ -743,7 +743,7 @@ The pipe operator is not limited to `dplyr` or the `tidyverse`
 Different pipe operator for more flexbility. 
 
 - `%<>%` combines the pipe and `<-`
-- `%T>%`to do something on the side
+- `%T>%` to do something on the side, i.g. generating a plot
 - `%$%` collapse the `data.frame` class
 ]
 
@@ -796,6 +796,30 @@ points(table(crime$DISTRICT)/sum(table(crime$DISTRICT)), col = alpha("red", 0.4)
 class: top, left
 ## Scoped Functions 
 
+We often perform operations on all or several columns at once. Most helpful are the selection auxiliary functions of the `dplyr` package.
+
+- Use `across()` to summarise on specific columns.
+
+.blockquote.exercise[ 
+```{r, eval = FALSE, echo = TRUE}
+iris %>% summarise(across(c(Sepal.Length, Sepal.Width), mean))
+```
+]
+
+--
+
+- Inside the `across()` function we can use the helper function for select which we already saw in the previous slides. 
+
+.blockquote.exercise[ 
+```{r, eval = FALSE, echo = TRUE}
+iris %>% summarise(across(ends_with('Width'), mean))
+```
+]
+
+
+
+
+???
 We often perform operations on all or several columns at once. In this case the standard 
 functions are pedestrian. Most helpful are the scoped versions of  `summarise()`, `mutate()` and `select()`.
 
@@ -846,7 +870,7 @@ mtcars %>%
 ]
 
 ---
-class: top, left
+class: exercise_slide
 
 ## Exercises
 
