@@ -30,8 +30,6 @@ options(servr.interval = 0.5)
 xaringan::inf_mr()
 ```
 
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(icons)
@@ -794,8 +792,7 @@ message("Y is negative") }
 
 if (y == 0) {
   log(x)
-} 
-else {
+} else {
   y ^ x
 }
     ```

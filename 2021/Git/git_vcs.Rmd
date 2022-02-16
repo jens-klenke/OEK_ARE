@@ -2,18 +2,19 @@
 title: "Advanced R for Econometricians"
 subtitle: "Version Control with Git"
 author: 
-  - "Martin Arnold"
+  - "Martin C. Arnold"
   - "Jens Klenke"
-date: "5 November 2018"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: ["default", "../assets/sydney-fonts.css", "../assets/sydney.css", "../assets/title_slides.css"]
+    css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/title_slides.css", "../assets/custom.css"]
     self_contained: false # if true, fonts will be stored locally
     seal: false # show a title slide with YAML information
     includes:
-      in_header: ["../assets/mathjax-equation-numbers.html", "../assets/meta.html"]
+      in_header: "../assets/mathjax-equation-numbers.html"
+      after_body: "../assets/copybutton.html"
     nature:
-      beforeInit: ["../assets/remark-zoom.js", "https://platform.twitter.com/widgets.js"]
+      beforeInit: ["../assets/remark-zoom.js", "../xaringan_files/macros.js", "https://platform.twitter.com/widgets.js"]
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -21,53 +22,77 @@ output:
       navigation:
         scroll: false # disable slide transitions by scrolling
 ---
+
+```{r moon_reader, include=FALSE, eval = FALSE}
+# setup for moon reader
+# copy it to console
+options(servr.interval = 0.5)
+xaringan::inf_mr()
+```
+
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(crayon.enabled = TRUE)
 #.remark-code, .hljs, terminal { background: #272822;}
-```
 
+library(icons)
+
+# pre-define icons
+desktop <- icon_style(icons::fontawesome$solid$desktop, fill = "#004c93")
+checker_green <- icons::icon_style(fontawesome$solid$check, fill = "green")
+times_red <- icons::icon_style(fontawesome$solid$times, fill = "red")
+```
 
 class: title-slide title-git center middle
 
 # `r rmarkdown::metadata$title`
 ## `r rmarkdown::metadata$subtitle`
+### `r rmarkdown::metadata$author`
 
 ---
 ## What is Git?
 
 - Git is an extremly popular version control system. 
-- A version control system keeps track of changes to your project and stores 
+- A version control system keeps track of all changes to your project and stores 
 all versions in a data base. 
-<br>
-```{r, eval = TRUE, echo = FALSE, out.width = "500px", fig.align='center'}
+
+```{r, eval = TRUE, echo = FALSE, out.width = "450px", fig.align='center'}
 knitr::include_graphics("git1.PNG")
 ```
 
 ---
 ## What is Git?
 
+.font90[
 - Git allows to move back to previous versions of your project if necessary. 
 - You could achieve something similar with:
-<br>
+]
+
+
+
 ```{r, eval = TRUE, echo = FALSE, out.width = "200px", fig.align='left'}
 knitr::include_graphics("git2.PNG")
 ```
 
-Why you should use Git instead of a simple folder structure?
+--
 
+#### Why you should use Git instead of a simple folder structure?
+
+.font90[
 - Git can tell you what changed in each version.
 - Git helps to synchronize different variants of a version. 
 - Git makes collaborating safer since it prevents overwriting each other and helps to solve conflicts (you might know the problem from e.g. Dropbox).
-- Git reminds you to document your changes so others or your future you knows why you did something.   
+- Git reminds you to document your changes so others or your future you knows why you did something.
+]
 
 ---
 ## Where can I get help? 
 
 On the Git hompage ([Git documentation](https://git-scm.com/doc)) you find
-- a comprehensive documentation.
-- the well written book Pro Git, which served as the main source of the slides.
-- tutorial videos. 
+- a comprehensive documentation
+- the well written book Pro Git, which served as the main source of the slides
+- tutorial videos 
 
 ---
 ## First Steps 
@@ -75,20 +100,29 @@ On the Git hompage ([Git documentation](https://git-scm.com/doc)) you find
 Before we can use Git we need to install it:
 - Look for current releases on https://git-scm.com/downloads. 
 - To check if Git was successfully installed open the terminal and run the command `git --version`.
-    ```terminal
+
+.blockquote.exercise[ 
+```terminal
 $ git --version
-git version 2.11.0.windows.1
+git version 2.26.2.windows.1
 ```
+]
+--
+
 - Next, set your user name and email address.
-    ```terminal
+
+.blockquote.exercise[ 
+```terminal
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
-    ```
-  You need to do this once on each computer. 
+```
+]
+  - You need to do this once on each computer. 
 
 ---
 ## Setup a Git Repository 
 
+.font90[
 There are two ways to get a Git repository: 
 
 1. Turn a directory on your PC into a Git repository. 
@@ -98,14 +132,24 @@ We start by creating a Git repository from scratch:
 
 - Create a new directory e.g. on Windows `C:\myProject`. 
 - Use your terminal to navigate to that directory.
-    ```terminal
+
+.blockquote.exercise[ 
+```terminal
 c:
 cd myProject
-    ```
+```
+]]
+
+--
+
+.font90[
 - Initialize a new git repository in this folder with 
+
+.blockquote.exercise[ 
 ```terminal
 git init
 ```
+]]
 
 ---
 ## Setup a Git Repository 
@@ -116,10 +160,13 @@ git init
 Git when you want to save (`commit`) a new status. 
 
 - Before we can `commit` anything we need to create some files. E.g., a `HelloGit.txt` file with the content
-    ```
+
+.blockquote.exercise[ 
+```
 Hello World!
 How are you?
-    ```
+```
+]
 
 ---
 ## `git status`
@@ -128,7 +175,7 @@ How are you?
 It gives you a short overview about what changed since your last
 `commit`.
 
-
+.code90.blockquote.exercise[ 
 ```terminal
 C:\myProject>git status
 
@@ -143,7 +190,9 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
- 
+] 
+
+--
 
 The nice thing about `git status` is that it tells you what to do next to 
 commit changes to the Git repository. 
@@ -153,17 +202,25 @@ commit changes to the Git repository.
 
 The first step to commit changes to the repository is to  use `git add <files_to_add>`. 
 
+.blockquote.exercise[ 
 ```terminal
 git add HelloGit.txt
 ```
+]
+
+--
+
 Running `git status` again gives
 
+.blockquote.exercise[ 
 ```terminal
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
         new file:   HelloGit.txt
 ```
+]
+
 The listed files (in our case there is only one) are ready to be committed. 
 The files are now in the so called **staging area**.
 
@@ -174,15 +231,21 @@ With the basic command `git commit` all files in the **staging area** are commit
 - Git wants you to document your commit by writing a so called commit message.
 - Running ` git commit` in the terminal by default opens the text editor VIM.  
 
-    ```{r, eval = TRUE, echo = FALSE, out.width = "300px", fig.align='left'}
+```{r, eval = TRUE, echo = FALSE, out.width = "300px", fig.align='left'}
 knitr::include_graphics("git3.PNG")
-    ```
+```
+
+--
 
 - If you don't want to spend time on learning VIM in order to write commit messages you should change the default editor. On windows you might switch to 
 Notepad. 
+
+.blockquote.exercise[ 
 ```terminal
 git config --global core.editor notepad
 ```
+]
+
 ---
 ## Commit Message
 
@@ -191,15 +254,25 @@ git config --global core.editor notepad
 - After a blank line you can give a more thorough description of what you have done. 
 
 - If you don't want to give a long description than you can also use 
-    ```terminal
+
+.blockquote.exercise[ 
+```terminal
 git commit -m "A short commit message"
-    ```
-    to commit the files in the staging area without opening an editor.  
+```
+]
+
+to commit the files in the staging area without opening an editor.  
+
+--
 
 - For the first commit in our example we could do something like 
-    ```terminal
+
+.blockquote.exercise[ 
+```terminal
 git commit - m "initial commit"
-    ```
+```
+]
+
 ---
 ## The lifecycle of the status of your files
 <br>
@@ -211,7 +284,10 @@ knitr::include_graphics("git5.PNG")
 <br>
 Source: [Pro Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
 ]
+
 ---
+class: exercise_slide
+
 ## Exercises
 
 1. Change the `HelloGit.txt` by replacing `Hello World!` with `Hello Git!`
@@ -224,6 +300,7 @@ Source: [Pro Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to
 - The command `git log` returns the commit history of your project. We see by whom and when a commit was made together with a short commit message. 
 - Each commit has a SHA value which can be used to address this commit. 
 
+.blockquote.exercise[
 ```terminal
 C:\MyProject>git log
 commit dfc8e86ac16116ed574884d171769b6e0e35c2f9
@@ -238,8 +315,9 @@ Date:   Mon Sep 23 15:02:02 2019 +0200
 
     Initial commit!
 ```
+]
 
-Learn more about `git log` [here](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History).
+Learn more about [`git log`](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History).
 
 ---
 ## `git diff`
@@ -247,6 +325,7 @@ Learn more about `git log` [here](https://git-scm.com/book/en/v2/Git-Basics-View
 - With `git diff` we can compare files before and after a commit. To 
 know what exactly changed in our last commit we compare it to our first commit:
 
+.blockquote.exercise[
 ```terminal
 C:\MyProject>git diff 2f17..dfc8
 
@@ -258,6 +337,10 @@ index 4f6866b..71e6eca 100644
 -Hello World!
 +Hello Git!
 ```
+]
+
+--
+
 - Note that we don't need the full SHA. Usually it is enough to provide the first 4 signs. If two or more SHA values started with the same 4 signs then git would tell us to provide more signs until the result gets unambiguous.  
 
 ---
@@ -265,9 +348,12 @@ index 4f6866b..71e6eca 100644
 
 Change again something in the `HelloGit.txt` file. If you now run 
 
+.blockquote.exercise[
 ```terminal
 git diff
 ```
+]
+
 you see all unstaged (everything that is not added yet) changes since the last commit. 
 
 ---
@@ -279,22 +365,29 @@ you see all unstaged (everything that is not added yet) changes since the last c
 
 - After using `git rm` you have to commit the removal doing a standard commit. 
 
-    ```terminal
+.blockquote.exercise[
+```terminal
 git rm HelloGit.txt
 git commit -m "remove HelloGit.txt"
-    ```
+```
+]
+
+--
+
 - If you only want to remove a file from the tracked files but keep it in your working directory run 
 
-    ```terminal
+.blockquote.exercise[
+```terminal
 git rm --cached HelloGit.txt
-    ```
-
+```
+]
 
 ---
 ## `git checkout`
 
 - Consider the following commit history: 
 
+.blockquote.exercise[
 ```terminal 
 C:\MyProject>git log --pretty=oneline
 
@@ -304,33 +397,47 @@ c3ed28cbdf6f7419242ad0747806d309954211f9 important change
 86214741766959936c09b1ecaf213dd6d749ef60 deleted HelloGit.txt
 27d048c3bebda441db44b9506080b4784dcc728b initial commit
 ```
+]
+
+---
 
 - Let's say you regret deleting `HelloGit.txt` and you want it back. 
 With the command `git checkout <SHA><path>` files can be brought back to their state of the specified commit. 
 
-    ```terminal
+.blockquote.exercise[
+```terminal
 git checkout 27d048 newFile.txt
-    ```
+```
+]
 
 ---
 ## `git reset`
 
 - If you want the whole project back at the state of a past commit you can do
 
+.blockquote.exercise[
 ```terminal
 git reset --hard 27d048 
 ```
+]
+
 - However, all changes after that commit will be discarded. 
+
+--
 
 - To keep changes in the directory of your computer use 
 
+.blockquote.exercise[
 ```terminal
 git reset 27d048 
 ```
-- After running this you can decide which changes after commit `27d048` you want to keep or discard since they 
-are now all in the modified files stage. 
+]
+
+- After running this you can decide which changes after commit `27d048` you want to keep or discard since they are now all in the modified files stage. 
 
 ---
+class: exercise_slide
+
 ## Exercises
 1. Make some changes to `HelloGit.txt` in your repository and add it to the staging area. 
 2. Now, you remember that you forgot some important changes and you want to unstage `HelloGit.txt`. For this, remove first `HelloGit.txt` from the staging area (`git status` will help you). Now make some changes and commit them. 
@@ -361,10 +468,12 @@ knitr::include_graphics("git4.PNG")
 ## Remote Repository
 3. Give your repository a name and click `Create repository`
 4. Copy and paste the lines below ***"…or push an existing repository from the command line"*** in the terminal of your local project to connect it with the repository on Github. For me it is 
+.blockquote.exercise[
 ```terminal
 git remote add origin https://github.com/alexandergerber/test.git
 git push -u origin master
 ```
+]
 5. Provide your Github username and password. 
 6. Take a look at the repository on Github. What do you find? 
 
@@ -376,9 +485,12 @@ the remote repository on Github you also need to `push` your local commits.
 
 - Add a new file to your repository. Then add, commit and push the new file.   
 
-    ```terminal 
+.blockquote.exercise[
+```terminal 
 C:\myProject>git push
-    ```
+```
+]
+
 - The first time you push something to a remote repository you need `git push -u origin master`. 
   After that `git push` is enough and `origin` is used as the default upstream branch. In case you start
   working with branches you need to learn more about this.  
@@ -400,11 +512,14 @@ The one who was added to the repository clones the repository on his local machi
 1. Use the terminal to navigate to the folder where you want to have the repository. 
 2. Use `git clone` like below (change the repository url to that of your collaborator). 
 
+.blockquote.exercise[
 ```terminal 
 git clone https://github.com/alexandergerber/HelloGit.git
 ```
+]
 
 --
+
 Now both can work on the same project. 
 
 ---
@@ -419,6 +534,7 @@ Now both can work on the same project.
 This should run smoothly if you didn't work on the project in the meantime. 
 
 ---
+class: exercise_slide
 ## Exercise
 
 1. Person A makes a change to the shared repository (add, commit, push). Afterwards Person B fetches the changes, runs `git status`
@@ -429,49 +545,66 @@ This should run smoothly if you didn't work on the project in the meantime.
 
 - The original `HelloGit.txt` file looked like this
 
+.blockquote.exercise[
 ```terminal
 Hello Git
 How are you?
 ```
+]
+--
+
 - Two people working on the project didn't like this and changed it independently from each other. 
 
 Change of Person A
 
+.blockquote.exercise[
 ```terminal
 Hello Git,
 
 How are you? I think I shoudld work on this file.  
 ```
+]
+
+--
+
 Change of Person B
 
+.blockquote.exercise[
 ```terminal
 Hello Git!
 How are you? I hope you don't run into too many conflicts. 
 ```
-
+]
 ---
 ## Solving conflicts
 
+.font90[
 - Person B pushed her changes first to the remote server. There was no problem because she worked with 
 the most recent status. 
 
 - However, Person A is now behind by one commit. If she tries to push a new commit, Git will tell her that 
 she first needs to `git pull` which is short for `git fetch` and `git merge`.  
 
-- If Person A does this Git will try to solve the confilict automatically. 
+- If Person A does this Git will try to solve the conflict automatically. 
 However, in our case git won't be able to do so because the exactly same parts of a file were changed and you don't
 want a machine to decide what to keep and what to discard. 
+]
 
+.blockquote.exercise[
 ```terminal
 C:\Users\AlexanderGerber\myProject>git merge
 Auto-merging HelloGit.txt
 CONFLICT (content): Merge conflict in HelloGit.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ```
+]
+
 ---
 ## Solving conflicts
 
 - Instead of solving the conflict, Git will parepare the file in a way that makes it easy for you to solve the conflict yourself. Look for everything starting with `<<<<<<< HEAD` and ending with   
+
+.blockquote.exercise[
 `>>>>>>> refs/...`. 
 
 ```terminal
@@ -484,10 +617,14 @@ Hello Git!
 How are you? I hope you don't run into too many conflicts. 
 >>>>>>> refs/remotes/origin/master
 ```
+]
+
 - Decide what to keep and then remove everything Git included as helper for you to solve the conflict. 
 - The final results can be commited and pushed to the remote repository.  
 
 ---
+class: exercise_slide
+
 ## Exercise
 1. Produce a merge confilict in your project. Then solve it.   
 
@@ -502,13 +639,14 @@ How are you? I hope you don't run into too many conflicts.
 - Learn more about it in the [gitignore documentation](https://git-scm.com/docs/gitignore).
 
 #### Example `.gitignore` file
+
+.blockquote.exercise[
 ```terminal
  .Rhistory
  *.html
  Packages/example/
 ```
-
-
+]
 
 ---
 ## Branching
@@ -518,6 +656,9 @@ How are you? I hope you don't run into too many conflicts.
 - It allows you to diverge form the linear development of your project to having multiple parallel versions at the same time. 
 
 - If you want to dig deeper into Git this would be one of the key features you should learn about after you digested the basics (which should be enough for this course.)
+
+---
+## Github Desktop
 
 
 
