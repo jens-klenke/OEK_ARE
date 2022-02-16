@@ -143,10 +143,11 @@ it from other content slides */
   background-color: #dfe4f2; /* #dfe4f2 #efe4bf; */
 }
 
-.exercise_slide .remark-code-line {
-  background-color: #FFFFFF; /* #dfe4f2; /* #a7b3d7; */ 
+/*.exercise_slide .remark-code-line {
+  background-color: #FFFFFF; /* #dfe4f2; /* #a7b3d7;  
   border-radius: 3px;
-}
+} 
+*/
 
 .exercise_slide .hljs {
     display: block;
@@ -156,6 +157,12 @@ it from other content slides */
     background: #FFFFFF; /*  #dfe4f2; /*#a7b3d7; */
     border-radius: 15px;
 }
+
+.exercise_slide .hljs-github .hljs {
+    background: #FFFFFF !important;
+}
+
+
 
 /*************************
           other stuff  

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content="Martin C. Arnold" />
     <meta name="author" content="Jens Klenke" />
-    <meta name="date" content="2022-02-15" />
+    <meta name="date" content="2022-02-16" />
     <script src="Wrangling_files/header-attrs/header-attrs.js"></script>
     <link href="Wrangling_files/remark-css/default.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
@@ -834,18 +834,21 @@ class: top, left
 
 We often perform operations on all or several columns at once. Most helpful are the selection auxiliary functions of the `dplyr` package.
 
-- Use `across()` to summarise on specific columns.
+- Use `across()` to determine the variable(s) and summarise function(s)  on specific columns.
 
 .blockquote.exercise[ 
 
 ```r
 iris %&gt;% summarise(across(c(Sepal.Length, Sepal.Width), mean))
+iris %&gt;% summarise(across(c(Sepal.Length, Sepal.Width), ~ mean(.x, na.rm = TRUE)))
+# summarise with multipe values 
+iris %&gt;% summarise(across(c(Sepal.Length, Sepal.Width), list(mean = mean, sd = sd)))
 ```
 ]
 
 --
 
-- Inside the `across()` function we can use the helper function for select which we already saw in the previous slides. 
+- Inside the `across()` function we can use the helper function for select which we already saw on the previous slides. 
 
 .blockquote.exercise[ 
 
@@ -858,6 +861,9 @@ iris %&gt;% summarise(across(ends_with('Width'), mean))
 
 
 ???
+
+purrr-style formula? 
+
 We often perform operations on all or several columns at once. In this case the standard 
 functions are pedestrian. Most helpful are the scoped versions of  `summarise()`, `mutate()` and `select()`.
 
@@ -884,16 +890,22 @@ functions are pedestrian. Most helpful are the scoped versions of  `summarise()`
 class: top, left
 ## Advanced Topics 
 
+.font90[
 If `summarise()` is too limited, because it can only handle functions that have a single 
 return value, use 
   - `group_modify(.tbl, .f, ...)` to return a grouped tibble. In that case `.f` must return a data frame.
   - `group_map(.tbl, .f, ...)` to returns a list of results from calling `.f` on each group.
   - `group_walk(.tbl, .f, ...)` to call `.f` for side effects and returns the input `.tbl`, invisibly.
-  
+
+]
+
+--
+
+.font90[
 Those functions are closely related to the functions in the `purrr` package which we 
 will talk about later. Here we only give a short example of how they can be used. 
 
-.code80[
+.code80[.blockquote.exercise[ 
 
 ```r
 mtcars %&gt;%
@@ -909,30 +921,39 @@ mtcars %&gt;%
   group_by(cyl) %&gt;% 
   group_walk(~ plot(mpg  ~ hp, data = . ))
 ```
-]
+]]]
 
 ---
 class: exercise_slide
 
 ## Exercises
 
-Use dplyr on the Boston crime data to:
+Use `dplyr` on the Boston crime data to:
 
 &lt;ol start="6"&gt; 
 &lt;li&gt;  Find out in which district the most incident where reported.  &lt;/li&gt;
 &lt;li&gt;  Create an ordered list of the top ten districts according to the number of drug violations. Start with the district with most drug violations. &lt;/li&gt;
-&lt;li&gt;  What was the most dangerous hour of the week according to the number of homicides (`OFFENSE\text{_}CODE\text{_}GROUP == "Homicide"`)?  &lt;/li&gt;
-&lt;li&gt;  Calculate for each district the proportion of motor vehicle accidents to all reported incidents (`OFFENSE\text{_}CODE\text{_}GROUP == "Motor Vehicle Accident Response"`).   &lt;/li&gt;
+&lt;li&gt;  What was the most dangerous hour of the week according to the number of homicides (&lt;code&gt;OFFENSE_CODE_GROUP == 'Homicide'&lt;/code&gt;)?  &lt;/li&gt;
+&lt;li&gt;  Calculate for each district the proportion of motor vehicle accidents to all reported incidents (&lt;code&gt;OFFENSE_CODE_GROUP == 'Motor Vehicle Accident Response'&lt;/code&gt;).   &lt;/li&gt;
 &lt;li&gt;  Sort the data set chronologically by year and month. Then take the first 10.000 observations and compute the proportion of incidents where a 
-shooting was involved for each district. Now take a random sample of size 10.000. Is there a noteworthy difference? **Hint:** There is a variable called `SHOOTING`.
+shooting was involved for each district. Now take a random sample of size 10.000. Is there a noteworthy difference? &lt;i&gt;Hint:&lt;/i&gt; There is a variable called &lt;code&gt;SHOOTING&lt;/code&gt;.
   &lt;/li&gt;
 &lt;/ol&gt;
 
+
+???
+
+
+dataset:
+https://www.kaggle.com/AnalyzeBoston/crimes-in-boston?select=crime.csv
 
 ---
 class: top, left
 ## Functions for 2 Tables
 
+- Two data frames
+
+.blockquote.exercise[ 
 
 ```r
 band_members   
@@ -959,14 +980,17 @@ band_instruments
 ## 2 Paul  bass  
 ## 3 Keith guitar
 ```
+]
+
 ---
 class: top, left
 ## Left Join
 
 A left join keeps all observations from the left table, and matches records from the right table based on one (or multiple) columns (`by`).
+.blockquote.exercise[ 
 
 ```r
-band_members %&gt;% left_join(band_instruments, by = "name")
+band_members %&gt;% left_join(band_instruments, by = 'name')
 ```
 
 ```
@@ -977,14 +1001,21 @@ band_members %&gt;% left_join(band_instruments, by = "name")
 ## 2 John  Beatles guitar
 ## 3 Paul  Beatles bass
 ```
+]
+
+--
+
+- Sometimes you may wish to keep all entrances of the right `data.fame`. You can do so with `right_join()`
+
 ---
 class: top, left
 ## Inner Join
 
 An inner join matches rows from the left and the right table but only keeps the rows where both tables have matching rows in the `by` column.
+.blockquote.exercise[ 
 
 ```r
-band_members %&gt;% inner_join(band_instruments, by = "name")
+band_members %&gt;% inner_join(band_instruments, by = 'name')
 ```
 
 ```
@@ -994,14 +1025,17 @@ band_members %&gt;% inner_join(band_instruments, by = "name")
 ## 1 John  Beatles guitar
 ## 2 Paul  Beatles bass
 ```
+ ]
 ---
 class: top, left
 ## Full Join
 
-A full (outer) join matches rows from the left and the right table and keeps all observations
+A full (outer) join matches rows from the left and the right table and keeps all observation
+
+.blockquote.exercise[ 
 
 ```r
-band_members %&gt;% full_join(band_instruments, by = "name")
+band_members %&gt;% full_join(band_instruments, by = 'name')
 ```
 
 ```
@@ -1013,6 +1047,7 @@ band_members %&gt;% full_join(band_instruments, by = "name")
 ## 3 Paul  Beatles bass  
 ## 4 Keith &lt;NA&gt;    guitar
 ```
+]
 ---
 class: top, left
 ## Semi Join
@@ -1020,8 +1055,10 @@ class: top, left
 A semi join keeps all observations of the left table where there are matching values in the right table.
 It keeps only columns from the left. 
 
+.blockquote.exercise[ 
+
 ```r
-band_members %&gt;% semi_join(band_instruments, by = "name")
+band_members %&gt;% semi_join(band_instruments, by = 'name')
 ```
 
 ```
@@ -1031,14 +1068,17 @@ band_members %&gt;% semi_join(band_instruments, by = "name")
 ## 1 John  Beatles
 ## 2 Paul  Beatles
 ```
+]
+
 ---
 class: top, left
 ## Anti Join
 An anti join returns all rows from the first table where no matches are found in the second table.
- 
+
+.blockquote.exercise[  
 
 ```r
-band_members %&gt;% anti_join(band_instruments, by = "name")
+band_members %&gt;% anti_join(band_instruments, by = 'name')
 ```
 
 ```
@@ -1047,6 +1087,7 @@ band_members %&gt;% anti_join(band_instruments, by = "name")
 ##   &lt;chr&gt; &lt;chr&gt; 
 ## 1 Mick  Stones
 ```
+]
 
 ---
 class: top, left
@@ -1054,14 +1095,14 @@ class: top, left
 
 The goal of `tidyr` is to help you create tidy data. Tidy data is data where:
 
-- each variable is in a column
+- each variable is a column
 - each observation is a row
 - each value is a cell.
 
 We will talk about 
 
-- `gather()` takes multiple columns, and gathers them into key-value pairs: it makes “wide” data longer.
-- `spread()` takes two columns (key &amp; value), and spreads into multiple columns: it makes “long” data wider.
+- `pivot_longer()` takes multiple columns, and gathers them into _key-value_ pairs: it makes “wide” data longer.
+- `pivot_wider()` takes multiple _value_ columns and one _key_ column, and spreads them across multiple columns: it makes “long” data wider.
 - `separate()` takes a single column and turns it into multiple columns based on a separator.  
 - `unite()` takes multiple columns and pastes them together into one column.  
 
@@ -1069,6 +1110,7 @@ We will talk about
 class: top, left
 ## Tidy Data
 
+.blockquote.exercise[
 
 ```r
 tidyr::table1
@@ -1085,6 +1127,9 @@ tidyr::table1
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583
 ```
+]
+
+--
 
 Each observation is in one row and each variable is one column. 
 
@@ -1092,6 +1137,7 @@ Each observation is in one row and each variable is one column.
 class: top, left
 ## Untidy data
 
+.blockquote.exercise[
 
 ```r
 tidyr::table2
@@ -1114,23 +1160,27 @@ tidyr::table2
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583
 ```
+]
+
+--
 
 Observations are scattered across multiple rows
 
 
 ---
 class: top, left
-## Spreading
+## Spreading (Widening)
 
-The function `tidyr::spread()` takes as arguments 
+The function `tidyr::pivot_wider()` main arguments are
 
-- `key`, containing the variable names
-- `value`, containing the values for the variables in the `key` column. 
+- `names_from`, containing the variable names
+- `values_from`, containing the values for the variables in the `names_from` column. 
 
+.blockquote.exercise[
 
 ```r
 table2 %&gt;%
-    spread(key = type, value = count)
+    pivot_wider(names_from = type, values_from = count)
 ```
 
 ```
@@ -1144,10 +1194,16 @@ table2 %&gt;%
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583
 ```
+]
+
+--
+
+See the help file for more information
 
 ---
 ## Untidy Data
 
+.blockquote.exercise[
 
 ```r
 tidyr::table4b
@@ -1161,39 +1217,58 @@ tidyr::table4b
 ## 2 Brazil       172006362  174504898
 ## 3 China       1272915272 1280428583
 ```
+]
+
+--
 
 - Columns do not contain variables and column names are values. 
 
 ---
-## Gathering
+## Gathering (Lengthening)
 
-The function `gather()` takes as arguments
+.font90[
+The function `pivot_longer()` main arguments are
 
-- the column names which are actual values
-- `key`, the name of the newly created variable resulting from the column name
-- `value`, the name of the newly created variable.
+- `cols` the column names which are actual values
+- `names_to`, the name of the newly created variable resulting from the column name
+- `values_to`, the name of the newly created variable.
+]
 
+--
+
+.font90.blockquote.exercise[
 
 ```r
 table4a %&gt;% 
-  gather(`1999`, `2000`, key = "year", value = "cases")
+  pivot_longer(cols = c('1999', '2000'), names_to = 'year', values_to = 'value')
 ```
 
 ```
 ## # A tibble: 6 x 3
-##   country     year   cases
+##   country     year   value
 ##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
 ## 1 Afghanistan 1999     745
-## 2 Brazil      1999   37737
-## 3 China       1999  212258
-## 4 Afghanistan 2000    2666
-## 5 Brazil      2000   80488
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
 ## 6 China       2000  213766
 ```
+]
 
+--
+
+.font90
+See the help file for more information
+]
+
+???
+
+notice that year is a character variable 
 ---
 ## Untidy Data
 
+.blockquote.exercise[
 
 ```r
 tidyr::table3 
@@ -1210,20 +1285,25 @@ tidyr::table3
 ## 5 China        1999 212258/1272915272
 ## 6 China        2000 213766/1280428583
 ```
+]
 
 - One column contains two variables. 
 
 ---
 ## Separating 
 
+.font80[
 The function `separate()` splits one column into multiple columns. 
 As input it takes: 
 - `col`, the column to be separated
 - `into`, the names of the newly created columns
 - `sep`, a regular expression which tells the function where to split (by default any non-alphanumeric character)
 - `convert`, a logical value which controls whether or not to run `run type.convert()` on the new columns.
+]
 
-.code70[
+--
+
+.code70[.blockquote.exercise[
 
 ```r
 table3 %&gt;% 
@@ -1241,10 +1321,16 @@ table3 %&gt;%
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583
 ```
-]
+]]
+
+???
+
+why is sep not specified? 
+
 ---
 ## Untidy Data
 
+.blockquote.exercise[
 
 ```r
 tidyr::table5 
@@ -1261,6 +1347,7 @@ tidyr::table5
 ## 5 China       19      99    212258/1272915272
 ## 6 China       20      00    213766/1280428583
 ```
+]
 
 - One variable is spread over multiple columns.  
 
@@ -1273,6 +1360,7 @@ As input it takes:
 - `...`, the columns to be pasted together
 - `sep`, the separator between values.
 
+.blockquote.exercise[
 
 ```r
 table5 %&gt;% 
@@ -1290,8 +1378,11 @@ table5 %&gt;%
 ## 5 China       1999  212258/1272915272
 ## 6 China       2000  213766/1280428583
 ```
+]
 
 ---
+class: exercise_slide
+
 ## Exercises
 
 &lt;ol start="11"&gt; 
@@ -1299,13 +1390,13 @@ table5 %&gt;%
 &lt;li&gt;  Recreate the plot given by the code below using `table2` instead of `table1`.  &lt;/li&gt;
 &lt;/ol&gt;
 
-    
-    ```r
-    library(ggplot2)
-    ggplot(table1, aes(year, cases)) + 
-      geom_line(aes(group = country), colour = "grey50") + 
-      geom_point(aes(colour = country))
-    ```
+
+```r
+library(ggplot2)
+ggplot(table1, aes(year, cases)) + 
+  geom_line(aes(group = country), colour = "grey50") + 
+  geom_point(aes(colour = country))
+```
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
