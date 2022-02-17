@@ -1,7 +1,7 @@
 ---
 title: "Advanced R for Econometricians"
 subtitle: "Data Visualization with ggplot2"
-author: "Alexander Gerber"
+author: "Jens Klenke"
 date: "5 November 2018"
 output:
   xaringan::moon_reader:
