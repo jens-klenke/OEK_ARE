@@ -36,6 +36,7 @@ knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE,
 options(htmltools.dir.version = FALSE)
 
 library(icons)
+library(magrittr)
 
 # pre-define icons
 desktop <- icon_style(icons::fontawesome$solid$desktop, fill = "#004c93")
@@ -72,13 +73,14 @@ is a great source.
 class: left, top
 
 ## ggplot2
-What is **ggplot2**?
+
+#### What is **ggplot2**?
 
 - an R package for data visualisation 
 - implementation of the [Grammar of Graphics](https://www.springer.com/de/book/9781475731002) in R
 - part of the [tidyverse](https://www.tidyverse.org/)
 
-Some interesting links: 
+#### Some interesting links: 
 
 - [R for Data Science](http://r4ds.had.co.nz/) 
 - [ggplot2: Elegant graphics for data Analysis](http://moderngraphics11.pbworks.com/f/ggplot2-Book09hWickham.pdf)
@@ -90,7 +92,7 @@ Some interesting links:
 class: left, top
 ## The Layered Grammar of Graphics
 
-The grammar consists of 
+#### The grammar consists of 
 - data
 - aesthetic mappings (e.g. mapping of data to x and y coordinates, size, color, shape, ...)
 - geometric objects (e.g. points, lines, bars, ...)
@@ -106,19 +108,23 @@ A plot can have multiple layers.
 class: left, top
 ## A Basic Example
 
+.blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
 library(ggplot2)
 data("diamonds")
 ggplot(data = diamonds) + 
   geom_point(mapping = aes(x = carat, y = price))
 ```
+]
+<br>
+--
 
-`ggplot()`
+#### `ggplot()`
 
 - Creates a coordinate system that you can add layers to.
 - Everything you provide as an argument will be the default for all added layers.
 
-`geom_point()`
+#### `geom_point()`
 
 - Adds a layer of points.
 - Each `geom_*` function takes a mapping argument, which paired with `aes()`
@@ -132,9 +138,15 @@ class: left, top
 library(ggplot2)
 set.seed(321)
 data("diamonds")
-diamonds <- diamonds[sample(1:nrow(diamonds), 5000), ]
+diamonds %<>% 
+  dplyr::sample_n(5000)
 ggplot(data = diamonds) + geom_point(mapping = aes(x = carat, y = price))
 ```
+
+???
+
+not the whole dataset included 
+
 
 ---
 class: left, top
@@ -142,24 +154,32 @@ class: left, top
 
 To make the (possibly nonlinear) relationship in the data easier visible we add a smoothing function to the plot.
 
+.blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
 ggplot(data = diamonds) + 
   geom_point(mapping = aes(x = carat, y = price)) +
   geom_smooth(mapping = aes(x = carat, y = price), method = 'loess')
 ```
+]
+
+--
 
 To write more compact code we can
 - omit the parameter names 
 - switch `mapping` to `ggplot()`.    
 
-  
-The same mapping is then used for all layers (but can be overwritten if necessary).
+--
 
+The same mapping is then used for all layers (but can be overwritten if necessary).
+--
+
+.blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
 ggplot(diamonds, aes(carat, price)) + 
   geom_point() +
   geom_smooth(method = 'loess')
 ```
+]
 
 ---
 class: left, top
@@ -179,12 +199,15 @@ class: left, top
 - `?geom_point()` tells us about further aesthetics that we can map data to. 
 - Each geom has its own set of aesthetics.
 
+--
+
+.blockquote.exercise[
 ```{r, echo = TRUE, eval = FALSE}
 ggplot(diamonds, aes(x = carat, y = price,
                      color = color, shape =  cut)) + 
   geom_point()
 ```
-
+]
 ---
 class: left, top
 ## Aesthetics
@@ -196,6 +219,7 @@ ggplot(diamonds, aes(x = carat, y = price,
 ```
 
 ---
+class: exercise_slide
 ## Exercise
 
 
