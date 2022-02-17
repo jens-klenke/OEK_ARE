@@ -1,17 +1,20 @@
 ---
 title: "Advanced R for Econometricians"
 subtitle: "Data Visualization with ggplot2"
-author: "Jens Klenke"
-date: "5 November 2018"
+author: 
+  - "Martin C. Arnold"
+  - "Jens Klenke"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: ["default", "../assets/sydney-fonts.css", "../assets/sydney.css", "../assets/title_slides.css"]
+    css: ["default", "../assets/ude_fonts.css", "../assets/ude.css", "../assets/title_slides.css", "../assets/custom.css"]
     self_contained: false # if true, fonts will be stored locally
     seal: false # show a title slide with YAML information
     includes:
-      in_header: ["../assets/mathjax-equation-numbers.html", "../assets/meta.html"]
+      in_header: "../assets/mathjax-equation-numbers.html"
+      after_body: "../assets/copybutton.html"
     nature:
-      beforeInit: ["../assets/remark-zoom.js", "https://platform.twitter.com/widgets.js"]
+      beforeInit: ["../assets/remark-zoom.js", "../xaringan_files/macros.js", "https://platform.twitter.com/widgets.js"]
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -19,24 +22,40 @@ output:
       navigation:
         scroll: false # disable slide transitions by scrolling
 ---
+```{r moon_reader, include=FALSE, eval = FALSE}
+# setup for moon reader
+# copy it to console
+options(servr.interval = 0.5)
+xaringan::inf_mr()
+```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE, 
                       fig.align = 'center', cache = TRUE,  
                       dpi = 250, fig.width=10, out.width='72%')
 options(htmltools.dir.version = FALSE)
+
+library(icons)
+
+# pre-define icons
+desktop <- icon_style(icons::fontawesome$solid$desktop, fill = "#004c93")
+checker_green <- icons::icon_style(fontawesome$solid$check, fill = "green")
+times_red <- icons::icon_style(fontawesome$solid$times, fill = "red")
+
 ```
 class: title-slide title-ggplot2 center middle
 
 # `r rmarkdown::metadata$title`
 ## `r rmarkdown::metadata$subtitle`
+### `r rmarkdown::metadata$author`
 
 ---
 class: left, top
 ## Data Visualization 
 
 <blockquote style ="margin-top:0%;">
-R is a programming language and free software environment for statistical computing and  <b>graphics</b> ... .
-.right[&mdash; <cite>Wikipedia </cite>]
+R is a free software environment for statistical computing and  <b>graphics</b>.
+.right[&mdash; <cite>[R-Projekt](https://www.r-project.org/)</cite>]
 </blockquote>
 
 There are three major graphical systems: 
@@ -46,7 +65,7 @@ There are three major graphical systems:
 - `ggplot2`
 
 In this course, we will focus on `ggplot2`. If you want to learn about the others, 
-[R Graphics](https://www.crcpress.com/R-Graphics/Murrell/p/book/9780429196119)
+[R Graphics](https://www.routledge.com/R-Graphics-Third-Edition/Murrell/p/book/9780367780692)
 is a great source. 
 
 ---
@@ -63,7 +82,7 @@ Some interesting links:
 
 - [R for Data Science](http://r4ds.had.co.nz/) 
 - [ggplot2: Elegant graphics for data Analysis](http://moderngraphics11.pbworks.com/f/ggplot2-Book09hWickham.pdf)
-- [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/)
+- [R Graphics Cookbook](https://r-graphics.org/)
 - [R Graph Gallery](https://www.r-graph-gallery.com/)
 - [DataCamp](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
 
